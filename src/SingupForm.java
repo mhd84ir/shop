@@ -39,6 +39,7 @@ public class SingupForm extends JFrame implements ActionListener {
         panel.add(usernameLabel, gbc);
 
         usernameField = new JTextField();
+        usernameField.setPreferredSize(new Dimension(200, usernameField.getPreferredSize().height));
         gbc.gridx = 1;
         panel.add(usernameField, gbc);
 
@@ -75,6 +76,7 @@ public class SingupForm extends JFrame implements ActionListener {
 
         // Set the frame to be visible
         frame.setVisible(true);
+
     }
 
     @Override
