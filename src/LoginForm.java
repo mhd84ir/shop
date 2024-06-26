@@ -68,12 +68,17 @@ public class LoginForm extends JFrame implements ActionListener {
 
         // Creating right panel for image
         JPanel rightPanel = new JPanel();
-        JLabel imageLabel = new JLabel(new ImageIcon("/Users/mhd84.ir/uni/Shop-Project/src/photos/pexels-photo-3593865.png"));
+        //Your file's name should  be based on your own OS
+        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\pexels-photo-3593865.png"));
         rightPanel.add(imageLabel);
 
         // Adding panels to frame
         add(leftPanel, BorderLayout.WEST);
         add(rightPanel, BorderLayout.CENTER);
+
+        //to disable resizable option
+        this.setResizable(false);
+
     }
 
     @Override
