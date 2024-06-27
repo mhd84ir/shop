@@ -1,4 +1,7 @@
-public class SignUp {
+import java.sql.*;
+
+
+public class SignUp extends Database {
     private String userName;
     private String password;
 
@@ -18,7 +21,43 @@ public class SignUp {
         return password;
     }
 
-    public boolean isValidUsername(String username) {
+    private boolean isINDatabase(String userName)
+    {
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = getConnection();
+            statement = connection.createStatement();
+            String query = "SELECT * FROM User";
+            resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                String DBUser = resultSet.getString("userName");
+                if (DBUser.equals(userName))
+                {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return false;
+
+    }
+
+
+    private boolean isValidUsername(String username) {
         // Username should be between 3 and 20 characters
         if (username.length() < 3 || username.length() > 20) {
             return false;
@@ -29,10 +68,15 @@ public class SignUp {
             return false;
         }
 
+        if (isINDatabase(userName))
+        {
+            return false;
+        }
+
         return true;
     }
 
-    public boolean isValidPassword(String password) {
+    private boolean isValidPassword(String password) {
         // Password should be at least 8 characters long
         if (password.length() < 8) {
             return false;
@@ -54,6 +98,34 @@ public class SignUp {
         }
 
         return true;
+    }
+
+
+    public boolean addToDB (String userName , String password)
+    {
+        if (isValidPassword(password) && isValidUsername(userName))
+        {
+            try (Connection connection = getConnection()) {
+
+            String query = "INSERT INTO User (password, userName, role) VALUES (?, ?, ?)";
+
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, password);
+                statement.setString(2, userName);
+                statement.setString(3, "normal");
+
+                int rowsInserted = statement.executeUpdate();
+
+                return rowsInserted > 0;
+            }
+        } catch (SQLException e) {
+        System.err.println("Error during signup: " + e.getMessage());
+        return false;
+            }
+        }
+
+        return false;
     }
 
 

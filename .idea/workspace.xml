@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9bbe3e0-63e8-4169-ac23-dfd6aba609d4" name="Changes" comment="singup panel first edit">
-      <change afterPath="$PROJECT_DIR$/src/Product.java" afterDir="false" />
+    <list default="true" id="e9bbe3e0-63e8-4169-ac23-dfd6aba609d4" name="Changes" comment="add ID">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j_8_0_32.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shop-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Shop-Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SignUp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,13 +42,17 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.LoginForm.executor": "Run",
     "Application.LoginPage.executor": "Run",
+    "Application.Main.executor": "Run",
     "Application.SingupForm.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "onboarding.tips.debug.path": "/Users/mhd84.ir/uni/Shop-Project/src/Main.java"
+    "onboarding.tips.debug.path": "/Users/mhd84.ir/uni/Shop-Project/src/Main.java",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -93,14 +100,68 @@
       <option name="project" value="LOCAL" />
       <updated>1719413702492</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add Product class">
+      <option name="closed" value="true" />
+      <created>1719417543903</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1719417543903</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add Cart class">
+      <option name="closed" value="true" />
+      <created>1719417769673</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1719417769673</updated>
+    </task>
+    <task id="LOCAL-00006" summary="arraylist type from String to Integer">
+      <option name="closed" value="true" />
+      <created>1719481327216</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1719481327216</updated>
+    </task>
+    <task id="LOCAL-00007" summary="create connection DB">
+      <option name="closed" value="true" />
+      <created>1719481384586</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1719481384586</updated>
+    </task>
+    <task id="LOCAL-00008" summary="ID type from String to int">
+      <option name="closed" value="true" />
+      <created>1719481494758</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1719481494758</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add ID">
+      <option name="closed" value="true" />
+      <created>1719481575570</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1719481575570</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Start" />
     <MESSAGE value="photos" />
     <MESSAGE value="singup panel first edit" />
-    <option name="LAST_COMMIT_MESSAGE" value="singup panel first edit" />
+    <MESSAGE value="add Product class" />
+    <MESSAGE value="add Cart class" />
+    <MESSAGE value="arraylist type from String to Integer" />
+    <MESSAGE value="create connection DB" />
+    <MESSAGE value="ID type from String to int" />
+    <MESSAGE value="add ID" />
+    <option name="LAST_COMMIT_MESSAGE" value="add ID" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
