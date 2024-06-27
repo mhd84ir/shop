@@ -67,7 +67,8 @@ public class LoginForm extends JFrame implements ActionListener {
         // Creating right panel for image
         JPanel rightPanel = new JPanel();
         //Your file's name should  be based on your own OS
-        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\pexels-photo-3593865.png"));
+        JLabel imageLabel = new JLabel(new ImageIcon("/Users/mhd84.ir/uni/Shop-Project/src/photos/pexels-photo-3593865.png"));
+//        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\pexels-photo-3593865.png"));
         rightPanel.add(imageLabel);
 
         // Adding panels to frame
@@ -86,8 +87,9 @@ public class LoginForm extends JFrame implements ActionListener {
             String password = new String(passwordField.getPassword());
 
             // Placeholder for actual authentication logic
-            if ("admin".equals(username) && "admin".equals(password)) {
+            if (new Signin().checkUsernameAndPassword(username,password)) {
                 JOptionPane.showMessageDialog(this, "Login successful!");
+                System.exit(0);
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid username or password.", "Error", JOptionPane.ERROR_MESSAGE);
             }
