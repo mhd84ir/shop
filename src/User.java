@@ -1,4 +1,11 @@
-public class User {
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class User extends Database {
     private int ID;
     private String name ;
     private String address ;
@@ -93,6 +100,44 @@ public class User {
 
         setPassword(newPassword);
     }
+
+
+    public boolean getInfoDB(int ID , String password)
+    {
+        try (Connection connection = getConnection()) {
+            String query = "SELECT * FROM User WHERE ID = ?";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, ID);
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        String DBPassword = resultSet.getString("password");
+                        if (password.equals(DBPassword)) {
+
+                            setID(resultSet.getInt("ID"));
+                            setName(resultSet.getString("name"));
+                            setAddress(resultSet.getString("address"));
+                            setPhoneNumber(resultSet.getString("phoneNumber"));
+                            setEmail(resultSet.getString("Email"));
+                            setPassword(resultSet.getString("password"));
+                            setCredit(resultSet.getDouble("credit"));
+                            setUserName(resultSet.getString("userName"));
+                            setRole(resultSet.getString("role"));
+
+                            return true;
+
+                        }
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error during search: " + e.getMessage());
+        }
+
+        return false;
+    }
+
 
 
 }
