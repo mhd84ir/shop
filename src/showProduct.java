@@ -54,7 +54,7 @@ public class showProduct {
     static JLabel creditLabel = new JLabel("your credit is : " + Double.toString(user.getCredit()) );
 
     //labels
-    static JLabel creditLabel = new JLabel("your credit is : " );
+//    static JLabel creditLabel = new JLabel("your credit is : " );
     static JLabel nameLabel = new JLabel("Name    :");
     static JLabel userNameLabel = new JLabel("Username:");
     static JLabel addressLabel = new JLabel("Address :");
