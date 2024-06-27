@@ -2,8 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Array;
 
-public class showProduct{
+public class showProduct {
     static JFrame frame = new JFrame("Shop");
 
     //Fonts
@@ -30,6 +35,9 @@ public class showProduct{
 
 
 
+    static User user = new User();
+
+
     //Profile panel
     static JPanel profilePanel = new JPanel();
     static JTextField nameField = new JTextField();
@@ -37,7 +45,7 @@ public class showProduct{
     static JTextField addressField = new JTextField();
     static JTextField phoneNumberField = new JTextField();
     static JTextField emailField = new JTextField();
-    static JLabel creditLabel = new JLabel("your credit is : " );
+    static JLabel creditLabel = new JLabel("your credit is : " + Double.toString(user.getCredit()) );
     static JLabel nameLabel = new JLabel("Name    :");
     static JLabel userNameLabel = new JLabel("Username:");
     static JLabel addressLabel = new JLabel("Address :");
@@ -52,6 +60,30 @@ public class showProduct{
 
 
     public showProduct() {
+
+
+        String[] info = new String[2];
+
+        try {
+            FileReader reader = new FileReader(new File("data.txt"));
+            BufferedReader reader1 = new BufferedReader(reader);
+            String line = reader1.readLine();
+
+
+
+            info = line.split(",");
+
+            reader1.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println("error open");
+        }
+
+        user.getInfoDB(Integer.parseInt(info[0]),info[1]);
+
+
+
         Dimension frameSize = new Dimension(1200,700);
         frame.setSize(frameSize);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -133,27 +165,32 @@ public class showProduct{
 
         nameField.setBounds(150, 25, 500, 40);
         nameField.setFont(fontEnglishText);
+        nameField.setText(user.getName());
         profilePanel.add(nameField);
 
         userNameField.setBounds(150,125,500,40);
         userNameField.setFont(fontEnglishText);
+        userNameField.setText(user.getUserName());
         profilePanel.add(userNameField);
 
         addressField.setBounds(150, 225, 500, 40);
         addressField.setFont(fontEnglishText);
+        addressField.setText(user.getAddress());
         profilePanel.add(addressField);
 
         phoneNumberField.setBounds(150, 325, 500, 40);
         phoneNumberField.setFont(fontEnglishText);
+        phoneNumberField.setText(user.getPhoneNumber());
         profilePanel.add(phoneNumberField);
 
         emailField.setBounds(150, 425, 500, 40);
         emailField.setFont(fontEnglishText);
+        emailField.setText(user.getEmail());
         profilePanel.add(emailField);
 
         //labels
 
-        creditLabel.setBounds(750, 5, 100, 100);
+        creditLabel.setBounds(750, 5, 200, 100);
         creditLabel.setFont(fontEnglishText);
         profilePanel.add(creditLabel);
 
@@ -196,7 +233,9 @@ public class showProduct{
         profilePanel.add(editInfoButton);
 
 
+
         //pictures
+//        JLabel imageLabel = new JLabel(new ImageIcon("/Users/mhd84.ir/uni/Shop-Project/src/photos/Screenshot 2024-06-27 203609.png"));
 
         JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\Screenshot 2024-06-27 203609.png"));
         imageLabel.setBounds(725,80,400,330);
