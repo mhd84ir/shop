@@ -68,7 +68,7 @@ public class SignUp extends Database {
             return false;
         }
 
-        if (isINDatabase(userName))
+        if (isINDatabase(username))
         {
             return false;
         }
@@ -78,24 +78,15 @@ public class SignUp extends Database {
 
     private boolean isValidPassword(String password) {
         // Password should be at least 8 characters long
-        if (password.length() < 8) {
+        if (password.length() < 4) {
             return false;
         }
 
         // Password should contain at least one uppercase letter
-        if (!password.matches(".*[A-Z].*")) {
+        if (!password.matches("^[a-zA-Z0-9_]*$")) {
             return false;
         }
 
-        // Password should contain at least one lowercase letter
-        if (!password.matches(".*[a-z].*")) {
-            return false;
-        }
-
-        // Password should contain at least one digit
-        if (!password.matches(".*\\d.*")) {
-            return false;
-        }
 
         return true;
     }
