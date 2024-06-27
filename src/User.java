@@ -1,4 +1,5 @@
 public class User {
+    private int ID;
     private String name ;
     private String address ;
     private String phoneNumber ;
@@ -8,6 +9,10 @@ public class User {
     private String userName ;
     //role: to know whether user is an admin or not
     private String role ;
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -39,6 +44,10 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public int getID() {
+        return ID;
     }
 
     public String getName() {
