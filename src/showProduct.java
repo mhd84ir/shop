@@ -43,6 +43,9 @@ public class showProduct{
     static JLabel addressLabel = new JLabel("Address :");
     static JLabel phoneNumberLabel = new JLabel("Number :");
     static JLabel emailLabel = new JLabel("Email    :");
+    static JButton depositButton = new JButton("Deposit");
+    static JButton previous = new JButton("Deposit");
+    static JButton pass = new JButton("Deposit");
 
 
 
@@ -145,7 +148,7 @@ public class showProduct{
         emailField.setFont(fontEnglishText);
         profilePanel.add(emailField);
 
-        creditLabel.setBounds(750, 11, 100, 100);
+        creditLabel.setBounds(750, 5, 100, 100);
         creditLabel.setFont(fontEnglishText);
         profilePanel.add(creditLabel);
 
@@ -169,9 +172,9 @@ public class showProduct{
         emailLabel.setFont(fontEnglishText);
         profilePanel.add(emailLabel);
 
-        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\pexels-photo-3593865.png"));
-        imageLabel.setBounds(700,100,400,375);
-        profilePanel.add(imageLabel);
+        depositButton.setBounds(1000, 43, 100, 30);
+        depositButton.setFont(fontEnglishButton);
+        profilePanel.add(depositButton);
 
 
 
