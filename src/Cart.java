@@ -2,13 +2,13 @@ import java.util.ArrayList;
 
 public class Cart {
 
-    private ArrayList <String> IDs = new ArrayList<String>();
+    private ArrayList <Integer> IDs = new ArrayList<Integer>();
 
-    public ArrayList<String> getIDs() {
+    public ArrayList<Integer> getIDs() {
         return IDs;
     }
 
-    public void setIDs(ArrayList<String> IDs) {
+    public void setIDs(ArrayList<Integer> IDs) {
         this.IDs = IDs;
     }
 }
