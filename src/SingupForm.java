@@ -89,7 +89,7 @@ public class SingupForm extends JFrame implements ActionListener {
         // Simple validation to check if passwords match
         if (password.equals(confirmPassword) && new SignUp().addToDB(username,password) ) {
             JOptionPane.showMessageDialog(frame, "Signup successful!");
-            System.exit(0);
+            this.dispose();
 
         } else if (!password.equals(confirmPassword)){
             JOptionPane.showMessageDialog(frame, "Passwords do not match.", "Error", JOptionPane.ERROR_MESSAGE);

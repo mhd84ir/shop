@@ -89,7 +89,8 @@ public class LoginForm extends JFrame implements ActionListener {
             // Placeholder for actual authentication logic
             if (new Signin().checkUsernameAndPassword(username,password)) {
                 JOptionPane.showMessageDialog(this, "Login successful!");
-                System.exit(0);
+                new showProduct();
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid username or password.", "Error", JOptionPane.ERROR_MESSAGE);
             }
