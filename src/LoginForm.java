@@ -13,7 +13,7 @@ public class LoginForm extends JFrame implements ActionListener {
     public LoginForm() {
         // Setting up the frame
         setTitle("Login Form");
-        setSize(800, 400);
+        setSize(800, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
@@ -48,16 +48,16 @@ public class LoginForm extends JFrame implements ActionListener {
         gbc.gridy = 1;
         leftPanel.add(passwordField, gbc);
 
-        gbc.gridx = 0;
+        gbc.gridx = 1;
         gbc.gridy = 2;
         leftPanel.add(loginButton, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         leftPanel.add(signupButton, gbc);
 
-        gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridx = 1;
+        gbc.gridy = 4;
         gbc.gridwidth = 2;
         leftPanel.add(cancelButton, gbc);
 
