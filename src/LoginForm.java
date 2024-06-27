@@ -8,7 +8,7 @@ public class LoginForm extends JFrame implements ActionListener {
     private JPasswordField passwordField;
     private JButton loginButton;
     private JButton signupButton;
-    private JButton cancelButton;
+    private JLabel dontHaveAccount;
 
     public LoginForm() {
         // Setting up the frame
@@ -26,11 +26,11 @@ public class LoginForm extends JFrame implements ActionListener {
 
         JLabel usernameLabel = new JLabel("Username:");
         JLabel passwordLabel = new JLabel("Password:");
+        JLabel dontHaveAccount = new JLabel("Don't have an account?");
         usernameField = new JTextField(15);
         passwordField = new JPasswordField(15);
         loginButton = new JButton("Login");
         signupButton = new JButton("Sign Up");
-        cancelButton = new JButton("Cancel");
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -52,19 +52,17 @@ public class LoginForm extends JFrame implements ActionListener {
         gbc.gridy = 2;
         leftPanel.add(loginButton, gbc);
 
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        leftPanel.add(dontHaveAccount, gbc);
+
         gbc.gridx = 1;
         gbc.gridy = 3;
         leftPanel.add(signupButton, gbc);
 
-        gbc.gridx = 1;
-        gbc.gridy = 4;
-        gbc.gridwidth = 2;
-        leftPanel.add(cancelButton, gbc);
-
         // Adding action listeners
         loginButton.addActionListener(this);
         signupButton.addActionListener(this);
-        cancelButton.addActionListener(this);
 
         // Creating right panel for image
         JPanel rightPanel = new JPanel();
@@ -95,8 +93,6 @@ public class LoginForm extends JFrame implements ActionListener {
             }
         } else if (e.getSource() == signupButton) {
             JOptionPane.showMessageDialog(this, "Sign Up button clicked!");
-        } else if (e.getSource() == cancelButton) {
-            System.exit(0);
         }
     }
 
