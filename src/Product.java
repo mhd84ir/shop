@@ -1,10 +1,12 @@
 public class Product {
+
+    private int ID;
     private String productName;
     private double price;
     private int stock;
-    private String ID;
 
-    public void setID(String ID) {
+
+    public void setID(int ID) {
         this.ID = ID;
     }
 
@@ -20,7 +22,7 @@ public class Product {
         this.stock = stock;
     }
 
-    public String getID() {
+    public int getID() {
         return ID;
     }
 
