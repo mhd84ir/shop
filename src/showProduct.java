@@ -44,8 +44,9 @@ public class showProduct{
     static JLabel phoneNumberLabel = new JLabel("Number :");
     static JLabel emailLabel = new JLabel("Email    :");
     static JButton depositButton = new JButton("Deposit");
-    static JButton previous = new JButton("Deposit");
-    static JButton pass = new JButton("Deposit");
+    static JButton PreviousPurchasesButton = new JButton("Previous purchases");
+    static JButton changePasswordButton = new JButton("Change password");
+    static JButton editInfoButton = new JButton("Edit");
 
 
 
@@ -128,6 +129,8 @@ public class showProduct{
         profilePanel.setBackground(Color.LIGHT_GRAY);
         profilePanel.setLayout(null);
 
+        //fields
+
         nameField.setBounds(150, 25, 500, 40);
         nameField.setFont(fontEnglishText);
         profilePanel.add(nameField);
@@ -147,6 +150,8 @@ public class showProduct{
         emailField.setBounds(150, 425, 500, 40);
         emailField.setFont(fontEnglishText);
         profilePanel.add(emailField);
+
+        //labels
 
         creditLabel.setBounds(750, 5, 100, 100);
         creditLabel.setFont(fontEnglishText);
@@ -172,10 +177,30 @@ public class showProduct{
         emailLabel.setFont(fontEnglishText);
         profilePanel.add(emailLabel);
 
+        //buttons
+
         depositButton.setBounds(1000, 43, 100, 30);
         depositButton.setFont(fontEnglishButton);
         profilePanel.add(depositButton);
 
+        PreviousPurchasesButton.setBounds(700, 425, 190, 50);
+        PreviousPurchasesButton.setFont(fontEnglishButton);
+        profilePanel.add(PreviousPurchasesButton);
+
+        changePasswordButton.setBounds(950, 425, 190, 50);
+        changePasswordButton.setFont(fontEnglishButton);
+        profilePanel.add(changePasswordButton);
+
+        editInfoButton.setBounds(350, 500, 100, 30);
+        editInfoButton.setFont(fontEnglishButton);
+        profilePanel.add(editInfoButton);
+
+
+        //pictures
+
+        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\Screenshot 2024-06-27 203609.png"));
+        imageLabel.setBounds(725,80,400,330);
+        profilePanel.add(imageLabel);
 
 
         homeButton.addActionListener(new ActionListener() {
