@@ -72,6 +72,8 @@ public class showAdmin extends JFrame implements ActionListener {
         userListButton.addActionListener(this);
         propertyButton.addActionListener(this);
         storeButton.addActionListener(this);
+        addNewProductButton.addActionListener(this);
+        addPhoto.addActionListener(this);
 
 
         mainPanel();
@@ -122,27 +124,18 @@ public class showAdmin extends JFrame implements ActionListener {
         mainPanel.add(imageLabel);
 
 
-        homeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.remove(mainPanel);
-                homePanel();
-                frame.repaint();
-                frame.revalidate();
+//        homeButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                frame.remove(mainPanel);
+//                homePanel();
+//                frame.repaint();
+//                frame.revalidate();
+//
+//            }
+//        });
 
-            }
-        });
 
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.remove(mainPanel);
-                addPanel();
-                frame.repaint();
-                frame.revalidate();
-
-            }
-        });
 
 //        editButton.addActionListener(new ActionListener() {
 //            @Override
@@ -251,34 +244,10 @@ public class showAdmin extends JFrame implements ActionListener {
 
 
 
-        addPhoto.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                chooseFileImage();
-            }
-        });
-
-
-        addNewProductButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                product.setProductName(nameField.getText());
-                product.setPrice(Double.parseDouble(priceField.getText()));
-                product.setStock(Integer.parseInt(stockField.getText()));
-                product.setPicture(file);
-
-                if (product.addProductToDB()) {
-                    JOptionPane.showMessageDialog(frame, "Information send successfully");
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(frame, "Error to send");
-                }
 
 
 
-            }
-        });
+
 
 
         frame.add(addPanel);
@@ -409,6 +378,27 @@ public class showAdmin extends JFrame implements ActionListener {
             storePanel();
             frame.repaint();
             frame.revalidate();
+        }
+
+        if (e.getSource() == addPhoto)
+        {
+            chooseFileImage();
+        }
+
+        if (e.getSource() == addNewProductButton)
+        {
+            product.setProductName(nameField.getText());
+            product.setPrice(Double.parseDouble(priceField.getText()));
+            product.setStock(Integer.parseInt(stockField.getText()));
+            product.setPicture(file);
+
+            if (product.addProductToDB()) {
+                JOptionPane.showMessageDialog(frame, "Information send successfully");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(frame, "Error to send");
+            }
         }
 
 
