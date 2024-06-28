@@ -57,6 +57,15 @@ public class showAdmin extends JFrame implements ActionListener {
 
     static JPanel productListPanel = new JPanel();
 
+    //users list panel
+    static JPanel userListPanel = new JPanel();
+
+
+
+    //property panel
+    static JPanel propertyPanel = new JPanel();
+    static JLabel sellingAmount = new JLabel("Overall property is : 454534$");
+
 
 
     public showAdmin() {
@@ -91,29 +100,26 @@ public class showAdmin extends JFrame implements ActionListener {
         mainPanel.setLayout(null);
 
         //buttons
-        homeButton.setBounds(0, 0, 200, 116);
+        homeButton.setBounds(0, 0, 200, 134);
         homeButton.setFont(fontEnglishButton);
         frame.add(homeButton);
 
-        addButton.setBounds(0, 114, 200, 116);
+        addButton.setBounds(0, 134, 200, 134);
         addButton.setFont(fontEnglishButton);
         frame.add(addButton);
 
-        productListButton.setBounds(0, 225, 200, 116);
+        productListButton.setBounds(0, 264, 200, 134);
         productListButton.setFont(fontEnglishButton);
         frame.add(productListButton);
 
-        userListButton.setBounds(0, 340, 200, 116);
+        userListButton.setBounds(0, 394, 200, 134);
         userListButton.setFont(fontEnglishButton);
         frame.add(userListButton);
 
-        propertyButton.setBounds(0, 453, 200, 116);
+        propertyButton.setBounds(0, 524, 200, 134);
         propertyButton.setFont(fontEnglishButton);
         frame.add(propertyButton);
 
-        storeButton.setBounds(0, 552, 200, 116);
-        storeButton.setFont(fontEnglishButton);
-        frame.add(storeButton);
 
         //pictures
 
@@ -185,12 +191,6 @@ public class showAdmin extends JFrame implements ActionListener {
         frame.add(mainPanel);
     }
 
-
-    //Home panel
-    public void homePanel(){
-        showProduct homePanel = new showProduct();
-    }
-
     //add panel
     public void addPanel(){
 
@@ -256,51 +256,97 @@ public class showAdmin extends JFrame implements ActionListener {
 
 
     public void productListPanel(){
-        productListPanel.setSize(1200,700);
-        productListPanel.setBackground(Color.LIGHT_GRAY);
-        productListPanel.setLayout(null);
+        userListPanel.setSize(1200,700);
+        userListPanel.setBackground(Color.LIGHT_GRAY);
+        userListPanel.setLayout(null);
 
-        DefaultTableModel model = new DefaultTableModel();
-        JTable table = new JTable(model);
-        JScrollPane scrollPane = new JScrollPane(table);
+        // Create a JPanel to hold the grid
+        JPanel panel = new JPanel(new GridLayout(101, 5));
 
-        model.addColumn("Product");
-        model.addColumn("Name");
-        model.addColumn("Price");
-        model.addColumn("Stock");
-        model.addColumn("Edit");
-
-        for (int i = 0; i < 100; i++) {
-            model.addRow(new Object[]{"Product " + (i + 1), "", "", "", ""});
+        // Adding headers to the first row
+        String[] headers = {"ID", "Name", "Price", "Stock", "Edit"};
+        for (String header : headers) {
+            panel.add(new JLabel(header));
         }
 
-        table.setRowHeight(60);
+        // Add 100 rows of 8 JTextFields and 1 JButton
+        for (int row = 0; row < 100; row++) {
+            for (int col = 0; col < 4; col++) {
+                panel.add(new JTextField());
+            }
+            JButton button = new JButton("Button " + (row + 1)); // To differentiate buttons
+            panel.add(button);
+        }
 
-        table.getColumnModel().getColumn(1).setHeaderValue("Name");
-        table.getColumnModel().getColumn(2).setHeaderValue("Price");
-        table.getColumnModel().getColumn(3).setHeaderValue("Stock");
-        table.getColumnModel().getColumn(4).setHeaderValue("Edit");
+        // Add the panel to the JFrame
+        add(new JScrollPane(panel));
 
+        // Set the size of the JFrame
+        setSize(1000, 500);
+        // Set the visibility of the JFrame
+        setVisible(true);
 
-        scrollPane.setBounds(200, 0, 1000, 700);
-        productListPanel.add(scrollPane);
-
-
-        frame.add(productListPanel);
     }
+
 
 
     public void userListPanel(){
+        userListPanel.setSize(1200,700);
+        userListPanel.setBackground(Color.LIGHT_GRAY);
+        userListPanel.setLayout(null);
+
+        // Create a JPanel to hold the grid
+        JPanel panel = new JPanel(new GridLayout(101, 9));
+
+        // Adding headers to the first row
+        String[] headers = {"ID", "Username", "Name", "Phone number", "Email", "Address", "Credit", "Role", "Edit"};
+        for (String header : headers) {
+            panel.add(new JLabel(header));
+        }
+
+        // Add 100 rows of 8 JTextFields and 1 JButton
+        for (int row = 0; row < 100; row++) {
+            for (int col = 0; col < 8; col++) {
+                panel.add(new JTextField());
+            }
+            JButton button = new JButton("Button " + (row + 1)); // To differentiate buttons
+            panel.add(button);
+        }
+
+        // Add the panel to the JFrame
+        add(new JScrollPane(panel));
+
+        // Set the size of the JFrame
+        setSize(1000, 500);
+        // Set the visibility of the JFrame
+        setVisible(true);
+
 
     }
+
+
+
 
     public void propertyPanel(){
-        //TODO
+        propertyPanel.setSize(1200,700);
+        propertyPanel.setBackground(Color.LIGHT_GRAY);
+        propertyPanel.setLayout(null);
+
+        //labels
+        sellingAmount.setBounds(500, 80, 500, 100);
+        sellingAmount.setFont(fontEnglishText);
+        propertyPanel.add(sellingAmount);
+
+        //pictures
+        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p2.jpg"));
+        imageLabel.setBounds(500,60,500,500);
+        propertyPanel.add(imageLabel);
+
+
+        frame.add(propertyPanel);
+
     }
 
-    public void storePanel(){
-        //TODO
-    }
 
 
     public void chooseFileImage(){
@@ -339,6 +385,7 @@ public class showAdmin extends JFrame implements ActionListener {
     }
 
 
+    //Action listeners
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == homeButton){
@@ -373,12 +420,6 @@ public class showAdmin extends JFrame implements ActionListener {
             frame.revalidate();
         }
 
-        if (e.getSource() == storeButton){
-            frame.remove(mainPanel);
-            storePanel();
-            frame.repaint();
-            frame.revalidate();
-        }
 
         if (e.getSource() == addPhoto)
         {
