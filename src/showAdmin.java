@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class showAdmin extends JFrame {
+public class showAdmin extends JFrame implements ActionListener {
     static JFrame frame = new JFrame("Shop");
 
     //Fonts
@@ -47,13 +47,20 @@ public class showAdmin extends JFrame {
 
 
 
-
     public showAdmin() {
 
         Dimension frameSize = new Dimension(1200,700);
         frame.setSize(frameSize);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
+
+        homeButton.addActionListener(this);
+        addButton.addActionListener(this);
+        productListButton.addActionListener(this);
+        userListButton.addActionListener(this);
+        propertyButton.addActionListener(this);
+        storeButton.addActionListener(this);
+
 
         mainPanel();
 
@@ -101,75 +108,9 @@ public class showAdmin extends JFrame {
         mainPanel.add(imageLabel);
 
 
-        homeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.remove(mainPanel);
-                homePanel();
-                frame.repaint();
-                frame.revalidate();
-
-            }
-        });
-
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.remove(mainPanel);
-                addPanel();
-                frame.repaint();
-                frame.revalidate();
-
-            }
-        });
-
-        productListButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.remove(mainPanel);
-                productListPanel();
-                frame.repaint();
-                frame.revalidate();
-
-            }
-        });
-
-//        userListButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                frame.remove(mainPanel);
-//                cart();
-//                frame.repaint();
-//                frame.revalidate();
-//
-//            }
-//        });
-//
-//        propertyButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                frame.remove(mainPanel);
-//                cart();
-//                frame.repaint();
-//                frame.revalidate();
-//
-//            }
-//        });
-//
-//        propertyButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                frame.remove(mainPanel);
-//                cart();
-//                frame.repaint();
-//                frame.revalidate();
-//
-//            }
-//        });
-//
-
         frame.add(mainPanel);
     }
+
 
     //Home panel
     public void homePanel(){
@@ -227,6 +168,7 @@ public class showAdmin extends JFrame {
         imageLabel.setBounds(600,0,600,600);
         addPanel.add(imageLabel);
 
+
         frame.add(addPanel);
 
     }
@@ -266,8 +208,66 @@ public class showAdmin extends JFrame {
         frame.add(productListPanel);
     }
 
+
+    public void userListPanel(){
+
+    }
+
+    public void propertyPanel(){
+        //TODO
+    }
+
+    public void storePanel(){
+        //TODO
+    }
+
     public static void main(String[] args) {
         new showAdmin();
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == homeButton){
+            showProduct showProduct = new showProduct();
+        }
+
+        if (e.getSource() == addButton){
+            frame.remove(mainPanel);
+            addPanel();
+            frame.repaint();
+            frame.revalidate();
+        }
+
+        if (e.getSource() == productListButton){
+            frame.remove(mainPanel);
+            productListPanel();
+            frame.repaint();
+            frame.revalidate();
+        }
+
+        if (e.getSource() == userListButton){
+            frame.remove(mainPanel);
+            userListPanel();
+            frame.repaint();
+            frame.revalidate();
+        }
+
+        if (e.getSource() == propertyButton){
+            frame.remove(mainPanel);
+            propertyPanel();
+            frame.repaint();
+            frame.revalidate();
+        }
+
+        if (e.getSource() == storeButton){
+            frame.remove(mainPanel);
+            storePanel();
+            frame.repaint();
+            frame.revalidate();
+        }
+
+
     }
 }
 
