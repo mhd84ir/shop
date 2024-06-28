@@ -570,10 +570,6 @@ public class showProduct {
                     JOptionPane.showMessageDialog(frame, "Error editing information");
                 }
 
-        addToCart.setBounds(50, 300, 100, 100);
-        addToCart.setFont(fontEnglishText);
-        productDetailsPanel.add(addToCart);
-
             }
         });
 
@@ -600,6 +596,11 @@ public class showProduct {
         numberOfProducts.setBounds(50, 200, 100, 100);
         numberOfProducts.setFont(fontEnglishText);
         productDetailsPanel.add(numberOfProducts);
+
+        addToCart.setBounds(50, 300, 100, 100);
+        addToCart.setFont(fontEnglishText);
+        productDetailsPanel.add(addToCart);
+
 
         //buttons
 
