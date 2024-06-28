@@ -1,10 +1,15 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 public class showAdmin extends JFrame {
     static JFrame frame = new JFrame("Shop");
+
+    static Product product = new Product();
 
     //Fonts
     static Font fontEnglishText = new Font("Times New Roman", Font.BOLD, 15);
@@ -19,6 +24,13 @@ public class showAdmin extends JFrame {
     static JButton userListButton = new JButton("Users List");
     static JButton propertyButton = new JButton("Property");
     static JButton storeButton = new JButton("Store");
+
+
+    // this is for picture
+    JLabel imageLabel;
+    JFileChooser fileChooser = new JFileChooser();
+    File file;
+    ImageIcon imageIcon;
 
 
     //add panel
@@ -86,7 +98,9 @@ public class showAdmin extends JFrame {
 
         //pictures
 
-        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\adminPic.png"));
+        JLabel imageLabel = new JLabel(new ImageIcon("/Users/mhd84.ir/uni/Shop-Project/src/photos/adminPic.png"));
+
+//        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\adminPic.png"));
         imageLabel.setBounds(500,60,500,500);
         mainPanel.add(imageLabel);
 
@@ -213,11 +227,72 @@ public class showAdmin extends JFrame {
 
         //picture
 
-        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p3.jpg"));
-        imageLabel.setBounds(600,0,600,600);
-        addPanel.add(imageLabel);
+        this.imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p3.jpg"));
+        this.imageLabel.setBounds(700,100,400,400);
+        addPanel.add(this.imageLabel);
+
+
+
+        addPhoto.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chooseFileImage();
+            }
+        });
+
+
+        addNewProductButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                product.setProductName(nameField.getText());
+                product.setPrice(Double.parseDouble(priceField.getText()));
+                product.setStock(Integer.parseInt(stockField.getText()));
+                product.setPicture(file);
+
+                if (product.addProductToDB()) {
+                    JOptionPane.showMessageDialog(frame, "Information send successfully");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(frame, "Error to send");
+                }
+
+
+
+            }
+        });
 
         frame.add(addPanel);
+
+    }
+
+
+    public void chooseFileImage(){
+
+
+
+        fileChooser.setAcceptAllFileFilterUsed(false);
+
+        int option = fileChooser.showOpenDialog(frame);
+        if (option == JFileChooser.APPROVE_OPTION)
+        {
+            file = fileChooser.getSelectedFile();
+            imageIcon = new ImageIcon(new ImageIcon (String.valueOf(file)).getImage().getScaledInstance(800, 600, Image.SCALE_DEFAULT));
+            this.imageLabel.setIcon(imageIcon);
+        }
+
+        try {
+            Image image = ImageIO.read(file);
+            Image scaledImage = image.getScaledInstance(this.imageLabel.getWidth(), this.imageLabel.getHeight(), Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(scaledImage);
+            imageLabel.setIcon(imageIcon);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
 
     }
 
