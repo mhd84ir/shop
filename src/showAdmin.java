@@ -1,12 +1,14 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
-public class showAdmin extends JFrame {
+public class showAdmin extends JFrame implements ActionListener {
     static JFrame frame = new JFrame("Shop");
 
     static Product product = new Product();
@@ -20,7 +22,7 @@ public class showAdmin extends JFrame {
     static JPanel mainPanel = new JPanel();
     static JButton homeButton  = new JButton("Home");
     static JButton addButton  = new JButton("Add product");
-    static JButton editButton = new JButton("Edit product");
+    static JButton productListButton = new JButton("product list");
     static JButton userListButton = new JButton("Users List");
     static JButton propertyButton = new JButton("Property");
     static JButton storeButton = new JButton("Store");
@@ -50,12 +52,27 @@ public class showAdmin extends JFrame {
     static JButton addNewProductButton  = new JButton("Add");
     static JButton addPhoto  = new JButton("Add photo");
 
+
+    //productList panel
+
+    static JPanel productListPanel = new JPanel();
+
+
+
     public showAdmin() {
 
         Dimension frameSize = new Dimension(1200,700);
         frame.setSize(frameSize);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
+
+        homeButton.addActionListener(this);
+        addButton.addActionListener(this);
+        productListButton.addActionListener(this);
+        userListButton.addActionListener(this);
+        propertyButton.addActionListener(this);
+        storeButton.addActionListener(this);
+
 
         mainPanel();
 
@@ -72,27 +89,27 @@ public class showAdmin extends JFrame {
         mainPanel.setLayout(null);
 
         //buttons
-        homeButton.setBounds(0, 50, 200, 100);
+        homeButton.setBounds(0, 0, 200, 116);
         homeButton.setFont(fontEnglishButton);
         frame.add(homeButton);
 
-        addButton.setBounds(0, 150, 200, 100);
+        addButton.setBounds(0, 114, 200, 116);
         addButton.setFont(fontEnglishButton);
         frame.add(addButton);
 
-        editButton.setBounds(0, 250, 200, 100);
-        editButton.setFont(fontEnglishButton);
-        frame.add(editButton);
+        productListButton.setBounds(0, 225, 200, 116);
+        productListButton.setFont(fontEnglishButton);
+        frame.add(productListButton);
 
-        userListButton.setBounds(0, 350, 200, 100);
+        userListButton.setBounds(0, 340, 200, 116);
         userListButton.setFont(fontEnglishButton);
         frame.add(userListButton);
 
-        propertyButton.setBounds(0, 450, 200, 100);
+        propertyButton.setBounds(0, 453, 200, 116);
         propertyButton.setFont(fontEnglishButton);
         frame.add(propertyButton);
 
-        storeButton.setBounds(0, 550, 200, 100);
+        storeButton.setBounds(0, 552, 200, 116);
         storeButton.setFont(fontEnglishButton);
         frame.add(storeButton);
 
@@ -174,6 +191,7 @@ public class showAdmin extends JFrame {
 
         frame.add(mainPanel);
     }
+
 
     //Home panel
     public void homePanel(){
@@ -262,8 +280,57 @@ public class showAdmin extends JFrame {
             }
         });
 
+
         frame.add(addPanel);
 
+    }
+
+
+    public void productListPanel(){
+        productListPanel.setSize(1200,700);
+        productListPanel.setBackground(Color.LIGHT_GRAY);
+        productListPanel.setLayout(null);
+
+        DefaultTableModel model = new DefaultTableModel();
+        JTable table = new JTable(model);
+        JScrollPane scrollPane = new JScrollPane(table);
+
+        model.addColumn("Product");
+        model.addColumn("Name");
+        model.addColumn("Price");
+        model.addColumn("Stock");
+        model.addColumn("Edit");
+
+        for (int i = 0; i < 100; i++) {
+            model.addRow(new Object[]{"Product " + (i + 1), "", "", "", ""});
+        }
+
+        table.setRowHeight(60);
+
+        table.getColumnModel().getColumn(1).setHeaderValue("Name");
+        table.getColumnModel().getColumn(2).setHeaderValue("Price");
+        table.getColumnModel().getColumn(3).setHeaderValue("Stock");
+        table.getColumnModel().getColumn(4).setHeaderValue("Edit");
+
+
+        scrollPane.setBounds(200, 0, 1000, 700);
+        productListPanel.add(scrollPane);
+
+
+        frame.add(productListPanel);
+    }
+
+
+    public void userListPanel(){
+
+    }
+
+    public void propertyPanel(){
+        //TODO
+    }
+
+    public void storePanel(){
+        //TODO
     }
 
 
@@ -298,6 +365,51 @@ public class showAdmin extends JFrame {
 
     public static void main(String[] args) {
         new showAdmin();
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == homeButton){
+            showProduct showProduct = new showProduct();
+        }
+
+        if (e.getSource() == addButton){
+            frame.remove(mainPanel);
+            addPanel();
+            frame.repaint();
+            frame.revalidate();
+        }
+
+        if (e.getSource() == productListButton){
+            frame.remove(mainPanel);
+            productListPanel();
+            frame.repaint();
+            frame.revalidate();
+        }
+
+        if (e.getSource() == userListButton){
+            frame.remove(mainPanel);
+            userListPanel();
+            frame.repaint();
+            frame.revalidate();
+        }
+
+        if (e.getSource() == propertyButton){
+            frame.remove(mainPanel);
+            propertyPanel();
+            frame.repaint();
+            frame.revalidate();
+        }
+
+        if (e.getSource() == storeButton){
+            frame.remove(mainPanel);
+            storePanel();
+            frame.repaint();
+            frame.revalidate();
+        }
+
+
     }
 }
 
