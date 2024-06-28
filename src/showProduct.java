@@ -49,6 +49,14 @@ public class showProduct {
     static JLabel productPriceLabel2 = new JLabel("Price :");
     static JLabel productPriceLabel3 = new JLabel("Price :");
 
+    static JLabel nameExample1 = new JLabel("Pink");
+    static JLabel nameExample2 = new JLabel("Green");
+    static JLabel nameExample3 = new JLabel("Blue");
+    static JLabel priceExample1 = new JLabel("1000");
+    static JLabel priceExample2 = new JLabel("1500");
+    static JLabel priceExample3 = new JLabel("2000");
+
+
 
     static User user = new User();
 
@@ -295,34 +303,64 @@ public class showProduct {
 
         //Labels
 
-        productName1.setBounds(750, 5, 200, 100);
+        productName1.setBounds(815, 150, 50, 50);
         productName1.setFont(fontEnglishText);
         cartPanel.add(productName1);
 
 
-        productName2.setBounds(750, 5, 200, 100);
+        productName2.setBounds(430, 150, 50, 50);
         productName2.setFont(fontEnglishText);
         cartPanel.add(productName2);
 
 
-        productName3.setBounds(750, 5, 200, 100);
+        productName3.setBounds(50, 150, 50, 50);
         productName3.setFont(fontEnglishText);
         cartPanel.add(productName3);
 
 
-        productPriceLabel1.setBounds(750, 5, 200, 100);
+        productPriceLabel1.setBounds(815, 220, 50, 50);
         productPriceLabel1.setFont(fontEnglishText);
         cartPanel.add(productPriceLabel1);
 
 
-        productPriceLabel2.setBounds(750, 5, 200, 100);
+        productPriceLabel2.setBounds(430, 220, 50, 50);
         productPriceLabel2.setFont(fontEnglishText);
         cartPanel.add(productPriceLabel2);
 
 
-        productPriceLabel3.setBounds(750, 5, 200, 100);
+        productPriceLabel3.setBounds(50, 220, 50, 50);
         productPriceLabel3.setFont(fontEnglishText);
         cartPanel.add(productPriceLabel3);
+
+
+        nameExample1.setBounds(815, 180, 50, 50);
+        nameExample1.setFont(fontEnglishText);
+        cartPanel.add(nameExample1);
+
+
+        nameExample2.setBounds(430, 180, 50, 50);
+        nameExample2.setFont(fontEnglishText);
+        cartPanel.add(nameExample2);
+
+
+        nameExample3.setBounds(50, 180, 50, 50);
+        nameExample3.setFont(fontEnglishText);
+        cartPanel.add(nameExample3);
+
+
+        priceExample1.setBounds(815, 250, 50, 50);
+        priceExample1.setFont(fontEnglishText);
+        cartPanel.add(priceExample1);
+
+
+        priceExample2.setBounds(430, 250, 50, 50);
+        priceExample2.setFont(fontEnglishText);
+        cartPanel.add(priceExample2);
+
+
+        priceExample3.setBounds(50, 250, 50, 50);
+        priceExample3.setFont(fontEnglishText);
+        cartPanel.add(priceExample3);
 
         //Pictures
 
