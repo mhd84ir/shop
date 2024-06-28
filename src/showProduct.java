@@ -25,18 +25,29 @@ public class showProduct {
     //Home panel
     static JPanel homePanel = new JPanel();
     static JTextField searchField = new JTextField();
-    static JButton productdetails = new JButton("Details");
+    static JButton productdetails3 = new JButton("Details");
     static JButton productdetails1 = new JButton("Details");
     static JButton productdetails2 = new JButton("Details");
-
-
 
 
     //cart panel
     static JPanel cartPanel = new JPanel();
 
+    //buttons
+    static JButton addButton = new JButton("+");
+    static JButton addButton1 = new JButton("+");
+    static JButton addButton2 = new JButton("+");
+    static JButton removeButton = new JButton("-");
+    static JButton removeButton1 = new JButton("-");
+    static JButton removeButton2 = new JButton("-");
 
-
+    //labels
+    static JLabel productName1 = new JLabel("Name :");
+    static JLabel productName2 = new JLabel("Name :");
+    static JLabel productName3 = new JLabel("Name :");
+    static JLabel productPriceLabel1 = new JLabel("Price :");
+    static JLabel productPriceLabel2 = new JLabel("Price :");
+    static JLabel productPriceLabel3 = new JLabel("Price :");
 
 
     static User user = new User();
@@ -69,13 +80,13 @@ public class showProduct {
 
 
     //productDetails panel
-    static JPanel productDetails = new JPanel();
+    static JPanel productDetailsPanel = new JPanel();
 
     //labels
     static JLabel name = new JLabel("Name :");
     static JLabel price = new JLabel("Price :");
-    static JLabel numberOfProduct = new JLabel(" :");
-    static JLabel addToCart = new JLabel("Add to cart");
+    static JLabel numberOfProducts = new JLabel("Stock :");
+    static JLabel addToCart = new JLabel("Add to cart :");
 
     //Buttons
 
@@ -109,7 +120,7 @@ public class showProduct {
 
         Dimension frameSize = new Dimension(1200,700);
         frame.setSize(frameSize);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(null);
 
         home();
@@ -145,17 +156,17 @@ public class showProduct {
         homeButton.setFont(fontEnglishButton);
         frame.add(homeButton);
 
-        productdetails.setBounds(170, 450, 100, 30);
-        productdetails.setFont(fontEnglishButton);
-        frame.add(productdetails);
+        productdetails3.setBounds(170, 450, 100, 30);
+        productdetails3.setFont(fontEnglishButton);
+        homePanel.add(productdetails3);
 
-        productdetails1.setBounds(530, 450, 100, 30);
+        productdetails1.setBounds(550, 450, 100, 30);
         productdetails1.setFont(fontEnglishButton);
-        frame.add(productdetails1);
+        homePanel.add(productdetails1);
 
-        productdetails2.setBounds(890, 450, 100, 30);
+        productdetails2.setBounds(930, 450, 100, 30);
         productdetails2.setFont(fontEnglishButton);
-        frame.add(productdetails2);
+        homePanel.add(productdetails2);
 
         //pictures
 
@@ -164,11 +175,11 @@ public class showProduct {
         homePanel.add(imageLabel1);
 
         JLabel imageLabel2 = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p2.jpg"));
-        imageLabel2.setBounds(400,150,350,250);
+        imageLabel2.setBounds(425,150,350,250);
         homePanel.add(imageLabel2);
 
         JLabel imageLabel3 = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p6.jpg"));
-        imageLabel3.setBounds(760,150,350,250);
+        imageLabel3.setBounds(810,150,350,250);
         homePanel.add(imageLabel3);
 
 
@@ -195,20 +206,29 @@ public class showProduct {
             }
         });
 
-        productdetails.addActionListener(new ActionListener() {
+        productdetails3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                JLabel imageLabel2 = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p5.jpg"));
+                imageLabel2.setBounds(425,150,350,250);
+                productDetailsPanel.add(imageLabel2);
+
                 frame.remove(homePanel);
                 productDetails();
                 frame.repaint();
                 frame.revalidate();
-
             }
         });
 
         productdetails1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                JLabel imageLabel1 = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p2.jpg"));
+                imageLabel1.setBounds(40,150,350,250);
+                productDetailsPanel.add(imageLabel1);
+
                 frame.remove(homePanel);
                 productDetails();
                 frame.repaint();
@@ -220,6 +240,11 @@ public class showProduct {
         productdetails2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                JLabel imageLabel3 = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p5.jpg"));
+                imageLabel3.setBounds(810,150,350,250);
+                productDetailsPanel.add(imageLabel3);
+
                 frame.remove(homePanel);
                 productDetails();
                 frame.repaint();
@@ -229,8 +254,7 @@ public class showProduct {
         });
 
 
-
-        frame.add(homePanel);
+                frame.add(homePanel);
 
     }
 
@@ -240,7 +264,106 @@ public class showProduct {
         cartPanel.setBackground(Color.LIGHT_GRAY);
         cartPanel.setLayout(null);
 
-        //TODO
+        //Buttons
+
+        addButton.setBounds(815, 300, 50, 50);
+        addButton.setFont(fontEnglishButton);
+        cartPanel.add(addButton);
+
+        addButton1.setBounds(430, 300, 50, 50);
+        addButton1.setFont(fontEnglishButton);
+        cartPanel.add(addButton1);
+
+
+        addButton2.setBounds(50, 300, 50, 50);
+        addButton2.setFont(fontEnglishButton);
+        cartPanel.add(addButton2);
+
+
+        removeButton.setBounds(815, 350, 50, 50);
+        removeButton.setFont(fontEnglishButton);
+        cartPanel.add(removeButton);
+
+        removeButton1.setBounds(430, 350, 50, 50);
+        removeButton1.setFont(fontEnglishButton);
+        cartPanel.add(removeButton1);
+
+
+        removeButton2.setBounds(50, 350, 50, 50);
+        removeButton2.setFont(fontEnglishButton);
+        cartPanel.add(removeButton2);
+
+        //Labels
+
+        productName1.setBounds(750, 5, 200, 100);
+        productName1.setFont(fontEnglishText);
+        cartPanel.add(productName1);
+
+
+        productName2.setBounds(750, 5, 200, 100);
+        productName2.setFont(fontEnglishText);
+        cartPanel.add(productName2);
+
+
+        productName3.setBounds(750, 5, 200, 100);
+        productName3.setFont(fontEnglishText);
+        cartPanel.add(productName3);
+
+
+        productPriceLabel1.setBounds(750, 5, 200, 100);
+        productPriceLabel1.setFont(fontEnglishText);
+        cartPanel.add(productPriceLabel1);
+
+
+        productPriceLabel2.setBounds(750, 5, 200, 100);
+        productPriceLabel2.setFont(fontEnglishText);
+        cartPanel.add(productPriceLabel2);
+
+
+        productPriceLabel3.setBounds(750, 5, 200, 100);
+        productPriceLabel3.setFont(fontEnglishText);
+        cartPanel.add(productPriceLabel3);
+
+        //Pictures
+
+        JLabel imageLabel1 = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p5.jpg"));
+        imageLabel1.setBounds(40,150,350,250);
+        cartPanel.add(imageLabel1);
+
+        JLabel imageLabel2 = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p2.jpg"));
+        imageLabel2.setBounds(425,150,350,250);
+        cartPanel.add(imageLabel2);
+
+        JLabel imageLabel3 = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p6.jpg"));
+        imageLabel3.setBounds(810,150,350,250);
+        cartPanel.add(imageLabel3);
+
+        //Action Listeners
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(cartPanel);
+                home();
+                frame.repaint();
+                frame.revalidate();
+
+            }
+        });
+
+        profileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(cartPanel);
+                profile();
+                frame.repaint();
+                frame.revalidate();
+
+            }
+        });
+
+
+        frame.add(cartPanel);
+
 
     }
 
@@ -325,7 +448,6 @@ public class showProduct {
         profilePanel.add(editInfoButton);
 
 
-
         //pictures
         JLabel imageLabel = new JLabel(new ImageIcon("/Users/mhd84.ir/uni/Shop-Project/src/photos/Screenshot 2024-06-27 203609.png"));
 
@@ -374,26 +496,81 @@ public class showProduct {
                     JOptionPane.showMessageDialog(frame, "Error editing information");
                 }
 
+        addToCart.setBounds(50, 300, 100, 100);
+        addToCart.setFont(fontEnglishText);
+        productDetailsPanel.add(addToCart);
 
             }
         });
 
         frame.add(profilePanel);
 
-
     }
 
     private static void productDetails()
     {
-        profilePanel.setSize(1200,700);
-        profilePanel.setBackground(Color.LIGHT_GRAY);
-        profilePanel.setLayout(null);
+        productDetailsPanel.setSize(1200,700);
+        productDetailsPanel.setBackground(Color.LIGHT_GRAY);
+        productDetailsPanel.setLayout(null);
+
+        //labels
+
+        name.setBounds(50, 0, 100, 100);
+        name.setFont(fontEnglishText);
+        productDetailsPanel.add(name);
+
+        price.setBounds(50, 100, 100, 100);
+        price.setFont(fontEnglishText);
+        productDetailsPanel.add(price);
+
+        numberOfProducts.setBounds(50, 200, 100, 100);
+        numberOfProducts.setFont(fontEnglishText);
+        productDetailsPanel.add(numberOfProducts);
+
+        //buttons
+
+        addToCartButton.setBounds(150, 330, 150, 35);
+        addToCartButton.setFont(fontEnglishButton);
+        productDetailsPanel.add(addToCartButton);
+
+
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(productDetailsPanel);
+                home();
+                frame.repaint();
+                frame.revalidate();
+
+
+            }
+        });
+
+        cartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(productDetailsPanel);
+                cart();
+                frame.repaint();
+                frame.revalidate();
+
+            }
+        });
+
+        profileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(productDetailsPanel);
+                profile();
+                frame.repaint();
+                frame.revalidate();
+
+            }
+        });
 
 
 
-
-
-
+        frame.add(productDetailsPanel);
 
     }
 
