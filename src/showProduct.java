@@ -24,10 +24,16 @@ public class showProduct {
 
     //Home panel
     static JPanel homePanel = new JPanel();
+
+    //fields
     static JTextField searchField = new JTextField();
+
+    //Buttons
     static JButton productdetails3 = new JButton("Details");
     static JButton productdetails1 = new JButton("Details");
     static JButton productdetails2 = new JButton("Details");
+    static JButton nextButton = new JButton("=>");
+
 
 
     //cart panel
@@ -40,6 +46,7 @@ public class showProduct {
     static JButton removeButton = new JButton("-");
     static JButton removeButton1 = new JButton("-");
     static JButton removeButton2 = new JButton("-");
+    static JButton buyButton = new JButton("Buy :)");
 
     //labels
     static JLabel productName1 = new JLabel("Name :");
@@ -97,8 +104,17 @@ public class showProduct {
     static JLabel addToCart = new JLabel("Add to cart :");
 
     //Buttons
-
     static JButton addToCartButton = new JButton("Click");
+
+
+
+    //nextPage panel
+    static JPanel nextPagePanel = new JPanel();
+
+    //buttons
+    static JButton nextPageButton = new JButton("=>");
+    static JButton previousPageButton = new JButton("<=");
+
 
 
     public showProduct() {
@@ -175,6 +191,11 @@ public class showProduct {
         productdetails2.setBounds(930, 450, 100, 30);
         productdetails2.setFont(fontEnglishButton);
         homePanel.add(productdetails2);
+
+        nextButton.setBounds(1140, 325, 60, 50);
+        nextButton.setFont(fontEnglishButton);
+        homePanel.add(nextButton);
+
 
         //pictures
 
@@ -261,6 +282,17 @@ public class showProduct {
             }
         });
 
+        nextButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(homePanel);
+                nextPage();
+                frame.repaint();
+                frame.revalidate();
+
+            }
+        });
+
 
                 frame.add(homePanel);
 
@@ -300,6 +332,10 @@ public class showProduct {
         removeButton2.setBounds(50, 350, 50, 50);
         removeButton2.setFont(fontEnglishButton);
         cartPanel.add(removeButton2);
+
+        buyButton.setBounds(520, 450, 150, 40);
+        buyButton.setFont(fontEnglishButton);
+        cartPanel.add(buyButton);
 
         //Labels
 
@@ -609,6 +645,36 @@ public class showProduct {
 
 
         frame.add(productDetailsPanel);
+
+    }
+
+    private static void nextPage(){
+        nextPagePanel.setSize(1200,700);
+        nextPagePanel.setBackground(Color.LIGHT_GRAY);
+        nextPagePanel.setLayout(null);
+
+        //Buttons
+        nextPageButton.setBounds(1140, 325, 60, 50);
+        nextPageButton.setFont(fontEnglishButton);
+        nextPagePanel.add(nextPageButton);
+
+        previousPageButton.setBounds(0, 325, 60, 50);
+        previousPageButton.setFont(fontEnglishButton);
+        nextPagePanel.add(previousPageButton);
+
+        //Action listeners
+        previousPageButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(nextPagePanel);
+                home();
+                frame.repaint();
+                frame.revalidate();
+
+            }
+        });
+
+        frame.add(nextPagePanel);
 
     }
 
