@@ -115,9 +115,9 @@ public class showAdmin extends JFrame implements ActionListener {
 
         //pictures
 
-        JLabel imageLabel = new JLabel(new ImageIcon("/Users/mhd84.ir/uni/Shop-Project/src/photos/adminPic.png"));
+//        JLabel imageLabel = new JLabel(new ImageIcon("/Users/mhd84.ir/uni/Shop-Project/src/photos/adminPic.png"));
 
-//        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\adminPic.png"));
+        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\adminPic.png"));
         imageLabel.setBounds(500,60,500,500);
         mainPanel.add(imageLabel);
 
@@ -364,7 +364,9 @@ public class showAdmin extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
+        product.getInfoDB(1);
         new showAdmin();
+
     }
 
 
