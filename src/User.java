@@ -139,5 +139,29 @@ public class User extends Database {
     }
 
 
+    public boolean editProfile ()
+
+    {
+        try (Connection connection = getConnection()) {
+            String query = "UPDATE User SET name = ? , address = ? , phoneNumber = ? , Email = ? , credit = ? , role = ? WHERE ID = ?";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, getName());
+                statement.setString(2, getAddress());
+                statement.setString(3, getPhoneNumber());
+                statement.setString(4, getEmail());
+                statement.setDouble(5, getCredit());
+                statement.setString(6, getRole());
+                statement.setInt(7, getID());
+
+                statement.executeUpdate();
+                return true;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error during search: " + e.getMessage());
+        }
+
+        return false;
+    }
 
 }
