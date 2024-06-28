@@ -54,7 +54,6 @@ public class showAdmin extends JFrame implements ActionListener {
 
 
     //productList panel
-
     static JPanel productListPanel = new JPanel();
 
     //users list panel
@@ -72,7 +71,7 @@ public class showAdmin extends JFrame implements ActionListener {
 
         Dimension frameSize = new Dimension(1200,700);
         frame.setSize(frameSize);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(null);
 
         homeButton.addActionListener(this);
@@ -130,64 +129,75 @@ public class showAdmin extends JFrame implements ActionListener {
         mainPanel.add(imageLabel);
 
 
-//        homeButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                frame.remove(mainPanel);
-//                homePanel();
-//                frame.repaint();
-//                frame.revalidate();
-//
-//            }
-//        });
+        //Action listeners
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showProduct showProduct = new showProduct();
+            }
+        });
+
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(mainPanel);
+                addPanel();
+                frame.repaint();
+                frame.revalidate();
+            }
+        });
+
+        productListButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(mainPanel);
+                productListPanel();
+                frame.repaint();
+                frame.revalidate();
+            }
+        });
+
+        userListButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(mainPanel);
+                userListPanel();
+                frame.repaint();
+                frame.revalidate();
+            }
+        });
+
+        propertyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(mainPanel);
+                propertyPanel();
+                frame.repaint();
+                frame.revalidate();
+            }
+        });
+
+        addNewProductButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                product.setProductName(nameField.getText());
+                product.setPrice(Double.parseDouble(priceField.getText()));
+                product.setStock(Integer.parseInt(stockField.getText()));
+                product.setPicture(file);
+
+                if (product.addProductToDB()) {
+                    JOptionPane.showMessageDialog(frame, "Information send successfully");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(frame, "Error to send");
+                }
+            }
+        });
 
 
 
-//        editButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                frame.remove(mainPanel);
-//                cart();
-//                frame.repaint();
-//                frame.revalidate();
-//
-//            }
-//        });
-//
-//        userListButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                frame.remove(mainPanel);
-//                cart();
-//                frame.repaint();
-//                frame.revalidate();
-//
-//            }
-//        });
-//
-//        propertyButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                frame.remove(mainPanel);
-//                cart();
-//                frame.repaint();
-//                frame.revalidate();
-//
-//            }
-//        });
-//
-//        propertyButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                frame.remove(mainPanel);
-//                cart();
-//                frame.repaint();
-//                frame.revalidate();
-//
-//            }
-//        });
-//
-
+        mainPanel.setVisible(true);
         frame.add(mainPanel);
     }
 
@@ -242,14 +252,20 @@ public class showAdmin extends JFrame implements ActionListener {
         this.imageLabel.setBounds(700,100,400,400);
         addPanel.add(this.imageLabel);
 
+        //Action Listeners
+
+        propertyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(addPanel);
+                propertyPanel();
+                frame.repaint();
+                frame.revalidate();
+            }
+        });
 
 
-
-
-
-
-
-
+        addPanel.setVisible(true);
         frame.add(addPanel);
 
     }
@@ -342,7 +358,18 @@ public class showAdmin extends JFrame implements ActionListener {
         imageLabel.setBounds(500,60,500,500);
         propertyPanel.add(imageLabel);
 
+        //Action listeners
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(propertyPanel);
+                addPanel();
+                frame.repaint();
+                frame.revalidate();
+            }
+        });
 
+        propertyPanel.setVisible(true);
         frame.add(propertyPanel);
 
     }
@@ -388,60 +415,10 @@ public class showAdmin extends JFrame implements ActionListener {
     //Action listeners
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == homeButton){
-            showProduct showProduct = new showProduct();
-        }
-
-        if (e.getSource() == addButton){
-            frame.remove(mainPanel);
-            addPanel();
-            frame.repaint();
-            frame.revalidate();
-        }
-
-        if (e.getSource() == productListButton){
-            frame.remove(mainPanel);
-            productListPanel();
-            frame.repaint();
-            frame.revalidate();
-        }
-
-        if (e.getSource() == userListButton){
-            frame.remove(mainPanel);
-            userListPanel();
-            frame.repaint();
-            frame.revalidate();
-        }
-
-        if (e.getSource() == propertyButton){
-            frame.remove(mainPanel);
-            propertyPanel();
-            frame.repaint();
-            frame.revalidate();
-        }
-
-
         if (e.getSource() == addPhoto)
         {
             chooseFileImage();
         }
-
-        if (e.getSource() == addNewProductButton)
-        {
-            product.setProductName(nameField.getText());
-            product.setPrice(Double.parseDouble(priceField.getText()));
-            product.setStock(Integer.parseInt(stockField.getText()));
-            product.setPicture(file);
-
-            if (product.addProductToDB()) {
-                JOptionPane.showMessageDialog(frame, "Information send successfully");
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(frame, "Error to send");
-            }
-        }
-
 
     }
 }
