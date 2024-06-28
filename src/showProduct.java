@@ -257,9 +257,12 @@ public class showProduct {
         nameField.setText(user.getName());
         profilePanel.add(nameField);
 
+
+
         userNameField.setBounds(150,125,500,40);
         userNameField.setFont(fontEnglishText);
         userNameField.setText(user.getUserName());
+        userNameField.setEditable(false);
         profilePanel.add(userNameField);
 
         addressField.setBounds(150, 225, 500, 40);
@@ -324,9 +327,9 @@ public class showProduct {
 
 
         //pictures
-//        JLabel imageLabel = new JLabel(new ImageIcon("/Users/mhd84.ir/uni/Shop-Project/src/photos/Screenshot 2024-06-27 203609.png"));
+        JLabel imageLabel = new JLabel(new ImageIcon("/Users/mhd84.ir/uni/Shop-Project/src/photos/Screenshot 2024-06-27 203609.png"));
 
-        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\Screenshot 2024-06-27 203609.png"));
+//        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\Screenshot 2024-06-27 203609.png"));
         imageLabel.setBounds(725,80,400,330);
         profilePanel.add(imageLabel);
 
@@ -349,6 +352,28 @@ public class showProduct {
                 cart();
                 frame.repaint();
                 frame.revalidate();
+
+            }
+        });
+
+        editInfoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                user.setName(nameField.getText());
+                user.setAddress(addressField.getText());
+                user.setPhoneNumber(phoneNumberField.getText());
+                user.setEmail(emailField.getText());
+
+                if (user.editProfile())
+                {
+                    JOptionPane.showMessageDialog(frame, "Information edited successfully");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(frame, "Error editing information");
+                }
+
 
             }
         });
