@@ -296,33 +296,30 @@ public class showProduct extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                frame.remove(homePanel);
-                addToCart();
-                frame.repaint();
-                frame.revalidate();
-            }
-        });
 
-        addToCartButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                frame.remove(homePanel);
-                addToCart();
-                frame.repaint();
-                frame.revalidate();
+                addToCart(frame,products1[0].getID(), products1[0].getStock());
 
             }
         });
 
-        addToCartButton1.addActionListener(new ActionListener() {
+        addToCartButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                frame.remove(homePanel);
-                addToCart();
-                frame.repaint();
-                frame.revalidate();
+
+                addToCart(frame,products1[1].getID(), products1[1].getStock());
+
+
+            }
+        });
+
+        addToCartButton3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+
+                addToCart(frame,products1[2].getID(), products1[2].getStock());
+
 
             }
         });
@@ -1056,7 +1053,10 @@ public class showProduct extends JFrame {
         JButton addToCartButton = new JButton("Add to Cart");
         addToCartButton.addActionListener(e -> {
             products.add(product);
-            JOptionPane.showMessageDialog(frame1, product.getProductName() + " added to cart.");
+            if (e.getSource() == addToCartButton)
+            {
+                addToCart(frame1,product.getID(),product.getStock());
+            }
         });
         infoPanel.add(addToCartButton, BorderLayout.SOUTH);
 
@@ -1064,23 +1064,32 @@ public class showProduct extends JFrame {
         return productPanel;
     }
 
-    public static void addToCart(){
-//        addToCartButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//                try {
-//                    FileWriter writer = new FileWriter("cart.txt",true);
-//                    BufferedWriter writer1 = new BufferedWriter(writer);
-//                    writer1.write(Id + ",");
-//                    writer1.close();
-//                }
-//                catch (IOException ee)
-//                {
-//                    System.out.println("error");
-//                }
-//            }
-//        });
+    public static void addToCart(JFrame frame, int Id , int stock){
+
+        if (stock>0) {
+
+            try {
+                FileWriter writer = new FileWriter("cart.txt", true);
+                BufferedWriter writer1 = new BufferedWriter(writer);
+                writer1.write(Id + ",");
+                writer1.close();
+
+                JOptionPane.showMessageDialog(frame, "added to cart");
+
+
+            } catch (IOException ee) {
+                System.out.println("error");
+                JOptionPane.showMessageDialog(frame, "Error to add");
+
+            }
+        }
+
+
+        else
+        {
+            JOptionPane.showMessageDialog(frame, "product is not available");
+        }
+
     }
 
 
