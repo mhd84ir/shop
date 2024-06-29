@@ -974,6 +974,12 @@ public class showProduct extends JFrame {
 
 
 
+
+
+        // بارگذاری داده‌ها از دیتابیس
+
+
+        // ایجاد پنل اصلی
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -981,6 +987,7 @@ public class showProduct extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 0;
 
+        // اضافه کردن پنل‌های محصول به پنل اصلی
         for (Product p : products) {
             mainPanel.add(createProductPanel(p), gbc);
             gbc.gridx++;
@@ -990,8 +997,13 @@ public class showProduct extends JFrame {
             }
         }
 
+        // قرار دادن پنل اصلی در یک JScrollPane برای امکان اسکرول کردن
         JScrollPane scrollPane = new JScrollPane(mainPanel);
         frame1.add(scrollPane, BorderLayout.CENTER);
+
+
+
+
 
         frame1.setVisible(true);
 
@@ -1001,8 +1013,9 @@ public class showProduct extends JFrame {
     static private JPanel createProductPanel(Product product) {
         JPanel productPanel = new JPanel();
         productPanel.setLayout(new BorderLayout(10, 10));
-        productPanel.setPreferredSize(new Dimension(200, 250));
+        productPanel.setPreferredSize(new Dimension(200, 300));
 
+        // نمایش تصویر محصول
         JLabel imageLabel = new JLabel();
         ImageIcon originalIcon = product.getImageIcon();
         Image scaledImage = originalIcon.getImage().getScaledInstance(180, 180, Image.SCALE_SMOOTH);
@@ -1010,17 +1023,35 @@ public class showProduct extends JFrame {
         imageLabel.setHorizontalAlignment(JLabel.CENTER);
         productPanel.add(imageLabel, BorderLayout.CENTER);
 
-        JLabel nameLabel = new JLabel(product.getProductName(), JLabel.CENTER);
-        nameLabel.setFont(new Font("Serif", Font.BOLD, 16));
-        productPanel.add(nameLabel, BorderLayout.NORTH);
+        // نمایش نام محصول
 
+
+        JPanel infoPanel = new JPanel();
+        infoPanel.setLayout(new GridLayout(3, 1));
+
+        JLabel nameLabel = new JLabel("Name: " +product.getProductName(), JLabel.CENTER);
+        nameLabel.setFont(new Font("Serif", Font.BOLD, 16));
+        productPanel.add(nameLabel,BorderLayout.NORTH);
+
+        JLabel priceLabel = new JLabel("Price: " + product.getPrice(), JLabel.CENTER);
+        priceLabel.setFont(new Font("Serif", Font.BOLD, 12));
+
+        JLabel stockLabel = new JLabel("Stock: " + product.getStock(), JLabel.CENTER);
+        stockLabel.setFont(new Font("Serif", Font.BOLD, 12));
+
+        infoPanel.add(priceLabel);
+        infoPanel.add(stockLabel);
+
+
+        // دکمه "Add to Cart"
         JButton addToCartButton = new JButton("Add to Cart");
         addToCartButton.addActionListener(e -> {
             products.add(product);
             JOptionPane.showMessageDialog(frame1, product.getProductName() + " added to cart.");
         });
-        productPanel.add(addToCartButton, BorderLayout.SOUTH);
+        infoPanel.add(addToCartButton, BorderLayout.SOUTH);
 
+        productPanel.add(infoPanel, BorderLayout.SOUTH);
         return productPanel;
     }
 
