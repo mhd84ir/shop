@@ -566,9 +566,9 @@ public class showProduct extends JFrame {
 
 
         //pictures
-        JLabel imageLabel = new JLabel(new ImageIcon("/Users/mhd84.ir/uni/Shop-Project/src/photos/Screenshot 2024-06-27 203609.png"));
+//        JLabel imageLabel = new JLabel(new ImageIcon("/Users/mhd84.ir/uni/Shop-Project/src/photos/Screenshot 2024-06-27 203609.png"));
 
-//        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\Screenshot 2024-06-27 203609.png"));
+        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\Screenshot 2024-06-27 203609.png"));
         imageLabel.setBounds(725,80,400,330);
         profilePanel.add(imageLabel);
 
@@ -782,6 +782,12 @@ public class showProduct extends JFrame {
         newPass.setFont(fontEnglishText);
         changePasswordPanel.add(newPass);
 
+        //pics
+        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\images.jpg"));
+        imageLabel.setBounds(725,80,400,330);
+        changePasswordPanel.add(imageLabel);
+
+
         //Action listeners
         homeButton.addActionListener(new ActionListener() {
             @Override
@@ -855,6 +861,11 @@ public class showProduct extends JFrame {
         addToCreditButton.setBounds(530, 400, 100, 50);
         addToCreditButton.setFont(fontEnglishButton);
         depositPanel.add(addToCreditButton);
+
+        //pics
+        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\wonder.png"));
+        imageLabel.setBounds(725,80,400,330);
+        depositPanel.add(imageLabel);
 
 
 
@@ -964,6 +975,7 @@ public class showProduct extends JFrame {
         // Set the visibility of the JFrame
         previousPurchaseFrame.setVisible(true);
 
+        previousPurchaseFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }
 
