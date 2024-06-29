@@ -123,6 +123,21 @@ public class showProduct {
     static JButton previousPageButton = new JButton("<=");
 
 
+    //change Password Panel
+    static JPanel changePasswordPanel = new JPanel();
+
+    //text fileds
+    static JTextField oldPassword = new JTextField();
+    static JTextField newPassword = new JTextField();
+
+    //buttons
+    static JButton changePassword = new JButton("Change");
+
+    //labels
+    static JLabel oldPass = new JLabel("Old password :");
+    static JLabel newPass = new JLabel("New password :");
+
+
 
     public showProduct() {
 
@@ -530,8 +545,6 @@ public class showProduct {
         nameField.setText(user.getName());
         profilePanel.add(nameField);
 
-
-
         userNameField.setBounds(150,125,500,40);
         userNameField.setFont(fontEnglishText);
         userNameField.setText(user.getUserName());
@@ -646,9 +659,16 @@ public class showProduct {
                     JOptionPane.showMessageDialog(frame, "Error editing information");
                 }
 
-        addToCart.setBounds(50, 300, 100, 100);
-        addToCart.setFont(fontEnglishText);
-        productDetailsPanel.add(addToCart);
+            }
+        });
+
+        changePasswordButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(profilePanel);
+                changePassword();
+                frame.repaint();
+                frame.revalidate();
 
             }
         });
@@ -680,6 +700,11 @@ public class showProduct {
         numberOfProducts.setFont(fontEnglishText);
         numberOfProducts.setText(Integer.toString(Stock));
         productDetailsPanel.add(numberOfProducts);
+
+        addToCart.setBounds(50, 300, 100, 100);
+        addToCart.setFont(fontEnglishText);
+        productDetailsPanel.add(addToCart);
+
 
 
         imageLabel.setBounds(810,150,350,250);
@@ -736,6 +761,75 @@ public class showProduct {
     }
 
 
+
+    private static void changePassword(){
+        changePasswordPanel.setSize(1200,700);
+        changePasswordPanel.setBackground(Color.LIGHT_GRAY);
+        changePasswordPanel.setLayout(null);
+
+        //text fields
+        oldPassword.setBounds(380, 170, 400, 40);
+        oldPassword.setFont(fontEnglishText);
+        changePasswordPanel.add(oldPassword);
+
+        newPassword.setBounds(380, 270, 400, 40);
+        newPassword.setFont(fontEnglishText);
+        changePasswordPanel.add(newPassword);
+
+        //Buttons
+        changePassword.setBounds(530, 400, 100, 50);
+        changePassword.setFont(fontEnglishButton);
+        changePasswordPanel.add(changePassword);
+
+        //text labels
+        oldPass.setBounds(250, 170, 100, 40);
+        oldPass.setFont(fontEnglishText);
+        changePasswordPanel.add(oldPass);
+
+        newPass.setBounds(250, 270, 200, 40);
+        newPass.setFont(fontEnglishText);
+        changePasswordPanel.add(newPass);
+
+        //Action listeners
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(changePasswordPanel);
+                home();
+                frame.repaint();
+                frame.revalidate();
+
+
+            }
+        });
+
+        cartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(changePasswordPanel);
+                cart();
+                frame.repaint();
+                frame.revalidate();
+
+            }
+        });
+
+        profileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(changePasswordPanel);
+                profile();
+                frame.repaint();
+                frame.revalidate();
+
+            }
+        });
+
+
+
+        frame.add(changePasswordPanel);
+
+    }
 
     public static void main(String[] args) {
         new showProduct();
