@@ -13,7 +13,7 @@ public class SingupForm extends JFrame implements ActionListener {
         // Create a new JFrame
         frame = new JFrame("Signup Form");
         frame.setSize(400, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
         // Create a panel for the form with padding
