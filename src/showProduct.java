@@ -40,6 +40,7 @@ public class showProduct extends JFrame {
     static JButton addToCartButton2 = new JButton("Add to cart");
     static JButton addToCartButton3 = new JButton("Add to cart");
     static JButton showMoreButton = new JButton("More");
+    static JButton searchButton = new JButton("search");
 
 
 
@@ -170,8 +171,6 @@ public class showProduct extends JFrame {
 
 
 
-
-
         Dimension frameSize = new Dimension(1200,700);
         frame.setSize(frameSize);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -240,6 +239,10 @@ public class showProduct extends JFrame {
         showMoreButton.setFont(fontEnglishButton);
         homePanel.add(showMoreButton);
 
+        searchButton.setBounds(910, 25, 100, 50);
+        searchButton.setFont(fontEnglishButton);
+        homePanel.add(searchButton);
+
         //labels
         productNameExample1.setBounds(180, 400, 150, 30);
         productNameExample1.setFont(fontEnglishText);
@@ -295,8 +298,7 @@ public class showProduct extends JFrame {
         addToCartButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
+            //TODO
                 addToCart(frame,products1[0].getID(), products1[0].getStock());
 
             }
@@ -305,8 +307,7 @@ public class showProduct extends JFrame {
         addToCartButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
+                //TODO
                 addToCart(frame,products1[1].getID(), products1[1].getStock());
 
 
@@ -316,8 +317,7 @@ public class showProduct extends JFrame {
         addToCartButton3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
+                //TODO
                 addToCart(frame,products1[2].getID(), products1[2].getStock());
 
 
@@ -334,8 +334,20 @@ public class showProduct extends JFrame {
             }
         });
 
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(homePanel);
+                search();
+                frame.repaint();
+                frame.revalidate();
 
-                frame.add(homePanel);
+            }
+        });
+
+
+
+        frame.add(homePanel);
 
     }
 
@@ -564,9 +576,9 @@ public class showProduct extends JFrame {
 
 
         //pictures
-        JLabel imageLabel = new JLabel(new ImageIcon("/Users/mhd84.ir/uni/Shop-Project/src/photos/Screenshot 2024-06-27 203609.png"));
+//        JLabel imageLabel = new JLabel(new ImageIcon("/Users/mhd84.ir/uni/Shop-Project/src/photos/Screenshot 2024-06-27 203609.png"));
 
-//        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\Screenshot 2024-06-27 203609.png"));
+        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\Screenshot 2024-06-27 203609.png"));
         imageLabel.setBounds(725,80,400,330);
         profilePanel.add(imageLabel);
 
@@ -780,6 +792,12 @@ public class showProduct extends JFrame {
         newPass.setFont(fontEnglishText);
         changePasswordPanel.add(newPass);
 
+        //pics
+        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\images.jpg"));
+        imageLabel.setBounds(725,80,400,330);
+        changePasswordPanel.add(imageLabel);
+
+
         //Action listeners
         homeButton.addActionListener(new ActionListener() {
             @Override
@@ -853,6 +871,11 @@ public class showProduct extends JFrame {
         addToCreditButton.setBounds(530, 400, 100, 50);
         addToCreditButton.setFont(fontEnglishButton);
         depositPanel.add(addToCreditButton);
+
+        //pics
+        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\wonder.png"));
+        imageLabel.setBounds(725,80,400,330);
+        depositPanel.add(imageLabel);
 
 
 
@@ -962,6 +985,7 @@ public class showProduct extends JFrame {
         // Set the visibility of the JFrame
         previousPurchaseFrame.setVisible(true);
 
+        previousPurchaseFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }
 
@@ -981,12 +1005,6 @@ public class showProduct extends JFrame {
 
 
 
-
-
-        // بارگذاری داده‌ها از دیتابیس
-
-
-        // ایجاد پنل اصلی
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -994,7 +1012,6 @@ public class showProduct extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 0;
 
-        // اضافه کردن پنل‌های محصول به پنل اصلی
         for (Product p : products) {
             mainPanel.add(createProductPanel(p), gbc);
             gbc.gridx++;
@@ -1004,11 +1021,8 @@ public class showProduct extends JFrame {
             }
         }
 
-        // قرار دادن پنل اصلی در یک JScrollPane برای امکان اسکرول کردن
         JScrollPane scrollPane = new JScrollPane(mainPanel);
         frame1.add(scrollPane, BorderLayout.CENTER);
-
-
 
 
 
@@ -1091,6 +1105,11 @@ public class showProduct extends JFrame {
             JOptionPane.showMessageDialog(frame, "product is not available");
         }
 
+    }
+
+
+    public static void search(){
+        //TODO
     }
 
 
