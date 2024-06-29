@@ -2,10 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -286,7 +283,7 @@ public class showProduct extends JFrame {
 
 
                 frame.remove(homePanel);
-                productDetails(products1[0].getProductName(), products1[0].getPrice(), products1[0].getStock(), imageLabel1);
+                productDetails(products1[0].getProductName(), products1[0].getPrice(), products1[0].getStock(), imageLabel1 , products1[0].getID());
                 frame.repaint();
                 frame.revalidate();
             }
@@ -300,7 +297,7 @@ public class showProduct extends JFrame {
 
 
                 frame.remove(homePanel);
-                productDetails(products1[1].getProductName(), products1[1].getPrice(), products1[1].getStock(), imageLabel2);
+                productDetails(products1[1].getProductName(), products1[1].getPrice(), products1[1].getStock(), imageLabel2 , products1[1].getID());
                 frame.repaint();
                 frame.revalidate();
 
@@ -314,7 +311,7 @@ public class showProduct extends JFrame {
                 JLabel imageLabel3 = new JLabel(products1[2].getImageIcon());
 
                 frame.remove(homePanel);
-                productDetails(products1[2].getProductName(), products1[2].getPrice(), products1[2].getStock(), imageLabel3);
+                productDetails(products1[2].getProductName(), products1[2].getPrice(), products1[2].getStock(), imageLabel3 , products1[2].getID());
                 frame.repaint();
                 frame.revalidate();
 
@@ -324,10 +321,9 @@ public class showProduct extends JFrame {
         showMoreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.remove(homePanel);
                 showMoreProduct();
-                frame.repaint();
-                frame.revalidate();
+//                frame.repaint();
+//                frame.revalidate();
 
             }
         });
@@ -649,7 +645,7 @@ public class showProduct extends JFrame {
 
     }
 
-    private static void productDetails(String Name, double Price, int Stock ,JLabel imageLabel )
+    private static void productDetails(String Name, double Price, int Stock ,JLabel imageLabel , int Id )
     {
 
         productDetailsPanel.setSize(1200,700);
@@ -683,7 +679,6 @@ public class showProduct extends JFrame {
         productDetailsPanel.add(imageLabel);
 
         //buttons
-
         addToCartButton.setBounds(150, 330, 150, 35);
         addToCartButton.setFont(fontEnglishButton);
         productDetailsPanel.add(addToCartButton);
@@ -692,6 +687,22 @@ public class showProduct extends JFrame {
 
 
 
+        addToCartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    FileWriter writer = new FileWriter("cart.txt",true);
+                    BufferedWriter writer1 = new BufferedWriter(writer);
+                    writer1.write(Id + ",");
+                    writer1.close();
+                }
+                catch (IOException ee)
+                {
+                    System.out.println("error");
+                }
+            }
+        });
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -836,6 +847,24 @@ public class showProduct extends JFrame {
         addToCreditButton.setFont(fontEnglishButton);
         depositPanel.add(addToCreditButton);
 
+
+
+        addToCreditButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                user.setCredit(user.getCredit() + Double.parseDouble(amountField.getText()));
+                if (user.editProfile())
+                {
+                    JOptionPane.showMessageDialog(frame, "Credit added successfully");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(frame, "Error adding credit");
+                    user.setCredit(user.getCredit() - Double.parseDouble(amountField.getText()));
+                }
+            }
+        });
+
         //Action listeners
         homeButton.addActionListener(new ActionListener() {
             @Override
@@ -931,6 +960,68 @@ public class showProduct extends JFrame {
 
     public static void showMoreProduct(){
 
+        ProductDisplayFrame();
+    }
+
+
+    static JFrame frame1 = new JFrame();
+    static public void ProductDisplayFrame() {
+
+        frame1.setTitle("Product List");
+        frame1.setSize(800, 600);
+        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame1.setLocationRelativeTo(null);
+
+
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+
+        for (Product p : products) {
+            mainPanel.add(createProductPanel(p), gbc);
+            gbc.gridx++;
+            if (gbc.gridx % 3 == 0) {
+                gbc.gridx = 0;
+                gbc.gridy++;
+            }
+        }
+
+        JScrollPane scrollPane = new JScrollPane(mainPanel);
+        frame1.add(scrollPane, BorderLayout.CENTER);
+
+        frame1.setVisible(true);
+
+        frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+
+    static private JPanel createProductPanel(Product product) {
+        JPanel productPanel = new JPanel();
+        productPanel.setLayout(new BorderLayout(10, 10));
+        productPanel.setPreferredSize(new Dimension(200, 250));
+
+        JLabel imageLabel = new JLabel();
+        ImageIcon originalIcon = product.getImageIcon();
+        Image scaledImage = originalIcon.getImage().getScaledInstance(180, 180, Image.SCALE_SMOOTH);
+        imageLabel.setIcon(new ImageIcon(scaledImage));
+        imageLabel.setHorizontalAlignment(JLabel.CENTER);
+        productPanel.add(imageLabel, BorderLayout.CENTER);
+
+        JLabel nameLabel = new JLabel(product.getProductName(), JLabel.CENTER);
+        nameLabel.setFont(new Font("Serif", Font.BOLD, 16));
+        productPanel.add(nameLabel, BorderLayout.NORTH);
+
+        JButton addToCartButton = new JButton("Add to Cart");
+        addToCartButton.addActionListener(e -> {
+            products.add(product);
+            JOptionPane.showMessageDialog(frame1, product.getProductName() + " added to cart.");
+        });
+        productPanel.add(addToCartButton, BorderLayout.SOUTH);
+
+        return productPanel;
     }
 
 
