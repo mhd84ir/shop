@@ -271,10 +271,10 @@ public class showAdmin extends JFrame implements ActionListener {
     }
 
 
-    public void productListPanel(){
-        userListPanel.setSize(1200,700);
-        userListPanel.setBackground(Color.LIGHT_GRAY);
-        userListPanel.setLayout(null);
+    private void productListPanel(){
+        productListPanel.setSize(1200,700);
+        productListPanel.setBackground(Color.LIGHT_GRAY);
+        productListPanel.setLayout(null);
 
         // Create a JPanel to hold the grid
         JPanel panel = new JPanel(new GridLayout(101, 5));
