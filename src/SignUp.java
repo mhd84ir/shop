@@ -76,7 +76,7 @@ public class SignUp extends Database {
         return true;
     }
 
-    private boolean isValidPassword(String password) {
+    public boolean isValidPassword(String password) {
         // Password should be at least 8 characters long
         if (password.length() < 4) {
             return false;
