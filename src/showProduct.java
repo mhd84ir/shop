@@ -38,7 +38,7 @@ public class showProduct extends JFrame {
     static JButton productdetails3 = new JButton("Details");
     static JButton productdetails1 = new JButton("Details");
     static JButton productdetails2 = new JButton("Details");
-    static JButton nextButton = new JButton("=>");
+    static JButton showMoreButton = new JButton("More");
 
 
 
@@ -107,16 +107,6 @@ public class showProduct extends JFrame {
     static JLabel addToCart = new JLabel("Add to cart :");
     //Buttons
     static JButton addToCartButton = new JButton("Click");
-
-
-
-
-    //nextPage panel
-    static JPanel nextPagePanel = new JPanel();
-    //buttons
-    static JButton nextPageButton = new JButton("=>");
-    static JButton previousPageButton = new JButton("<=");
-
 
 
 
@@ -209,10 +199,6 @@ public class showProduct extends JFrame {
         }
 
 
-
-
-
-
         homePanel.setSize(1200,700);
         homePanel.setBackground(Color.LIGHT_GRAY);
         homePanel.setLayout(null);
@@ -249,14 +235,9 @@ public class showProduct extends JFrame {
         productdetails3.setFont(fontEnglishButton);
         homePanel.add(productdetails3);
 
-        nextButton.setBounds(1140, 325, 60, 50);
-        nextButton.setFont(fontEnglishButton);
-        homePanel.add(nextButton);
-
-
-        previousPageButton.setBounds(0, 325, 60, 50);
-        previousPageButton.setFont(fontEnglishButton);
-        homePanel.add(previousPageButton);
+        showMoreButton.setBounds(1100, 300, 100, 100);
+        showMoreButton.setFont(fontEnglishButton);
+        homePanel.add(showMoreButton);
 
 
         //pictures
@@ -340,60 +321,11 @@ public class showProduct extends JFrame {
             }
         });
 
-        nextButton.addActionListener(new ActionListener() {
+        showMoreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                if (end + 3 <= products.size())
-                {
-                    start += 3;
-                    end += 3;
-                    frame.remove(homePanel);
-                    home();
-                } else if (end + 2 <= products.size())
-                {
-                    start += 2;
-                    end += 2;
-                    frame.remove(homePanel);
-                    home();
-                } else if (end + 1 <= products.size())
-                {
-                    start += 1;
-                    end += 1;
-                    frame.remove(homePanel);
-                    home();
-                }
-                frame.repaint();
-                frame.revalidate();
-
-            }
-        });
-
-
-        previousPageButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                if (start - 3 >= 0)
-                {
-                    start -= 3;
-                    end -= 3;
-                    frame.remove(homePanel);
-                    home();
-                } else if (start - 2 >= 0)
-                {
-                    start -= 2;
-                    end -= 2;
-                    frame.remove(homePanel);
-                    home();
-                } else if (start - 1 >= 0)
-                {
-                    start -= 1;
-                    end -= 1;
-                    frame.remove(homePanel);
-                    home();
-                }
-
+                frame.remove(homePanel);
+                showMoreProduct();
                 frame.repaint();
                 frame.revalidate();
 
@@ -997,17 +929,10 @@ public class showProduct extends JFrame {
 
     }
 
-
-    //next page  panel
-    private void nextPagePanel(){
-        previousPurchasePanel.setSize(1200,700);
-        previousPurchasePanel.setBackground(Color.LIGHT_GRAY);
-        previousPurchasePanel.setLayout(null);
-
-
-
+    public static void showMoreProduct(){
 
     }
+
 
 
     public static void main(String[] args) {
