@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class showAdmin extends JFrame implements ActionListener {
+public class showAdmin  implements ActionListener {
     static JFrame frame = new JFrame("Shop");
 
     static Product product = new Product();
@@ -278,6 +278,9 @@ public class showAdmin extends JFrame implements ActionListener {
 
 
     private void productListPanel(){
+        //new frame
+        JFrame productListFrame = new JFrame();
+
         productListPanel.setSize(1200,700);
         productListPanel.setBackground(Color.LIGHT_GRAY);
         productListPanel.setLayout(null);
@@ -310,20 +313,24 @@ public class showAdmin extends JFrame implements ActionListener {
             panel.add(button);
         }
 
+        productListFrame.add(panel);
 
         // Add the panel to the JFrame
-        add(new JScrollPane(panel));
+        productListFrame.add(new JScrollPane(panel));
 
         // Set the size of the JFrame
-        setSize(1000, 500);
+        productListFrame.setSize(1000, 500);
         // Set the visibility of the JFrame
-        setVisible(true);
+        productListFrame.setVisible(true);
 
     }
 
 
 
     public void userListPanel(){
+        //new frame
+        JFrame userListFrame = new JFrame();
+
         userListPanel.setSize(1200,700);
         userListPanel.setBackground(Color.LIGHT_GRAY);
         userListPanel.setLayout(null);
@@ -360,13 +367,15 @@ public class showAdmin extends JFrame implements ActionListener {
             panel.add(button);
         }
 
+        userListFrame.add(panel);
+
         // Add the panel to the JFrame
-        add(new JScrollPane(panel));
+        userListFrame.add(new JScrollPane(panel));
 
         // Set the size of the JFrame
-        setSize(1000, 500);
+        userListFrame.setSize(1000, 500);
         // Set the visibility of the JFrame
-        setVisible(true);
+        userListFrame.setVisible(true);
 
 
     }
