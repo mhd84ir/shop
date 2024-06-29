@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class showProduct {
+public class showProduct extends JFrame{
     static JFrame frame = new JFrame("Shop");
 
     static ArrayList<Product> products = new ArrayList<Product>();
@@ -22,19 +22,18 @@ public class showProduct {
     static Font fontEnglishText = new Font("Times New Roman", Font.BOLD, 15);
     static Font fontEnglishButton = new Font("Times New Roman", Font.ITALIC, 19);
 
-
     //3 main Buttons
     static JButton profileButton = new JButton("My Profile");;
     static JButton cartButton = new JButton("Cart");
     static JButton homeButton = new JButton("Home");
 
 
+
+
     //Home panel
     static JPanel homePanel = new JPanel();
-
     //fields
     static JTextField searchField = new JTextField();
-
     //Buttons
     static JButton productdetails3 = new JButton("Details");
     static JButton productdetails1 = new JButton("Details");
@@ -43,9 +42,9 @@ public class showProduct {
 
 
 
+
     //cart panel
     static JPanel cartPanel = new JPanel();
-
     //buttons
     static JButton addButton = new JButton("+");
     static JButton addButton1 = new JButton("+");
@@ -54,7 +53,6 @@ public class showProduct {
     static JButton removeButton1 = new JButton("-");
     static JButton removeButton2 = new JButton("-");
     static JButton buyButton = new JButton("Buy :)");
-
     //labels
     static JLabel productName1 = new JLabel("Name :");
     static JLabel productName2 = new JLabel("Name :");
@@ -62,7 +60,6 @@ public class showProduct {
     static JLabel productPriceLabel1 = new JLabel("Price :");
     static JLabel productPriceLabel2 = new JLabel("Price :");
     static JLabel productPriceLabel3 = new JLabel("Price :");
-
     static JLabel nameExample1 = new JLabel("Pink");
     static JLabel nameExample2 = new JLabel("Green");
     static JLabel nameExample3 = new JLabel("Blue");
@@ -75,9 +72,10 @@ public class showProduct {
     static User user = new User();
 
 
+
+
     //Profile panel
     static JPanel profilePanel = new JPanel();
-
     //text fields
     static JTextField nameField = new JTextField();
     static JTextField userNameField = new JTextField();
@@ -85,7 +83,6 @@ public class showProduct {
     static JTextField phoneNumberField = new JTextField();
     static JTextField emailField = new JTextField();
     static JLabel creditLabel = new JLabel("your credit is : " + Double.toString(user.getCredit()) );
-
     //labels
 //    static JLabel creditLabel = new JLabel("your credit is : " );
     static JLabel nameLabel = new JLabel("Name    :");
@@ -93,7 +90,6 @@ public class showProduct {
     static JLabel addressLabel = new JLabel("Address :");
     static JLabel phoneNumberLabel = new JLabel("Number :");
     static JLabel emailLabel = new JLabel("Email    :");
-
     //buttons
     static JButton depositButton = new JButton("Deposit");
     static JButton PreviousPurchasesButton = new JButton("Previous purchases");
@@ -101,41 +97,51 @@ public class showProduct {
     static JButton editInfoButton = new JButton("Edit");
 
 
+
     //productDetails panel
     static JPanel productDetailsPanel = new JPanel();
-
     //labels
     static JLabel name = new JLabel("Name :");
     static JLabel price = new JLabel("Price :");
     static JLabel numberOfProducts = new JLabel("Stock :");
     static JLabel addToCart = new JLabel("Add to cart :");
-
     //Buttons
     static JButton addToCartButton = new JButton("Click");
 
 
 
+
     //nextPage panel
     static JPanel nextPagePanel = new JPanel();
-
     //buttons
     static JButton nextPageButton = new JButton("=>");
     static JButton previousPageButton = new JButton("<=");
 
 
+
+
     //change Password Panel
     static JPanel changePasswordPanel = new JPanel();
-
-    //text fileds
+    //text filed
     static JTextField oldPassword = new JTextField();
     static JTextField newPassword = new JTextField();
-
     //buttons
     static JButton changePassword = new JButton("Change");
-
     //labels
     static JLabel oldPass = new JLabel("Old password :");
     static JLabel newPass = new JLabel("New password :");
+
+
+
+
+    //Deposit panel
+    static JPanel depositPanel = new JPanel();
+    //labels
+    static JLabel amount = new JLabel("How much you want to add to your credit ?");
+    //text field
+    static JTextField amountField = new JTextField();
+    //Buttons
+    static JButton addToCreditButton = new JButton("Add");
 
 
 
@@ -673,6 +679,19 @@ public class showProduct {
             }
         });
 
+        depositButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(profilePanel);
+                deposit();
+                frame.repaint();
+                frame.revalidate();
+
+            }
+        });
+
+
+
         frame.add(profilePanel);
 
     }
@@ -830,6 +849,67 @@ public class showProduct {
         frame.add(changePasswordPanel);
 
     }
+
+    private static void deposit(){
+        depositPanel.setSize(1200,700);
+        depositPanel.setBackground(Color.LIGHT_GRAY);
+        depositPanel.setLayout(null);
+
+        //text labels
+        amount.setBounds(450, 200, 500, 40);
+        amount.setFont(fontEnglishText);
+        depositPanel.add(amount);
+
+        //text field
+        amountField.setBounds(380, 300, 400, 40);
+        amountField.setFont(fontEnglishText);
+        depositPanel.add(amountField);
+
+        //Buttons
+        addToCreditButton.setBounds(530, 400, 100, 50);
+        addToCreditButton.setFont(fontEnglishButton);
+        depositPanel.add(addToCreditButton);
+
+        //Action listeners
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(depositPanel);
+                home();
+                frame.repaint();
+                frame.revalidate();
+
+
+            }
+        });
+
+        cartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(depositPanel);
+                cart();
+                frame.repaint();
+                frame.revalidate();
+
+            }
+        });
+
+        profileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(depositPanel);
+                profile();
+                frame.repaint();
+                frame.revalidate();
+
+            }
+        });
+
+
+        frame.add(depositPanel);
+
+    }
+
 
     public static void main(String[] args) {
         new showProduct();
