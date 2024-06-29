@@ -825,6 +825,20 @@ public class showProduct {
             }
         });
 
+        changePassword.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (user.changePassword(oldPassword.getText(), newPassword.getText()))
+                {
+                    JOptionPane.showMessageDialog(frame, "Password changed successfully");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(frame, "Error changing password");
+                }
+            }
+        });
+
 
 
         frame.add(changePasswordPanel);

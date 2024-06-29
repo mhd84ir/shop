@@ -97,11 +97,19 @@ public class User extends Database {
         setCredit(newCredit);
     }
 
-    public void changePassword (String newPassword)
+    public boolean changePassword (String oldPassword , String newPassword)
     {
-        // در اینجا که در ادامه باید توسعه پیدا کنند بایید چک کند که آیا password صحیح است یا نه؟
 
-        setPassword(newPassword);
+        if (oldPassword.equals(getPassword()) && !oldPassword.equals(newPassword) && new SignUp().isValidPassword(newPassword))
+        {
+            setPassword(newPassword);
+            if (editProfile())
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 
@@ -146,7 +154,7 @@ public class User extends Database {
 
     {
         try (Connection connection = getConnection()) {
-            String query = "UPDATE User SET name = ? , address = ? , phoneNumber = ? , Email = ? , credit = ? , role = ? WHERE ID = ?";
+            String query = "UPDATE User SET name = ? , address = ? , phoneNumber = ? , Email = ? , credit = ? , role = ? , password = ? WHERE ID = ?";
 
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setString(1, getName());
@@ -155,7 +163,8 @@ public class User extends Database {
                 statement.setString(4, getEmail());
                 statement.setDouble(5, getCredit());
                 statement.setString(6, getRole());
-                statement.setInt(7, getID());
+                statement.setString(7, getPassword());
+                statement.setInt(8, getID());
 
                 statement.executeUpdate();
                 return true;
