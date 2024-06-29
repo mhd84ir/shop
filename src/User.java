@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class User extends Database {
     private int ID;
@@ -16,6 +17,8 @@ public class User extends Database {
     private String userName ;
     //role: to know whether user is an admin or not
     private String role ;
+
+    private ArrayList <User> users = new ArrayList<User>();
 
     public void setID(int ID) {
         this.ID = ID;
@@ -162,6 +165,39 @@ public class User extends Database {
         }
 
         return false;
+    }
+
+
+    //get all users from database
+    public ArrayList<User> getAllUsers()
+    {
+        try (Connection connection = getConnection()) {
+            String query = "SELECT * FROM User";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        User user = new User();
+                        user.setID(resultSet.getInt("ID"));
+                        user.setName(resultSet.getString("name"));
+                        user.setAddress(resultSet.getString("address"));
+                        user.setPhoneNumber(resultSet.getString("phoneNumber"));
+                        user.setEmail(resultSet.getString("Email"));
+                        user.setPassword(resultSet.getString("password"));
+                        user.setCredit(resultSet.getDouble("credit"));
+                        user.setUserName(resultSet.getString("userName"));
+                        user.setRole(resultSet.getString("role"));
+
+                        users.add(user);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error during search: " + e.getMessage());
+        }
+
+        return users;
     }
 
 }

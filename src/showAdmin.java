@@ -7,11 +7,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class showAdmin extends JFrame implements ActionListener {
     static JFrame frame = new JFrame("Shop");
 
     static Product product = new Product();
+
+    static ArrayList <Product> products = new ArrayList<Product>();
+
+    static User user = new User();
+    static ArrayList <User> users = new ArrayList<User>();
 
     //Fonts
     static Font fontEnglishText = new Font("Times New Roman", Font.BOLD, 15);
@@ -68,6 +74,10 @@ public class showAdmin extends JFrame implements ActionListener {
 
 
     public showAdmin() {
+
+        //get all products from database
+        products = product.getAllProductFromDB();
+        users = user.getAllUsers();
 
         Dimension frameSize = new Dimension(1200,700);
         frame.setSize(frameSize);
@@ -277,7 +287,7 @@ public class showAdmin extends JFrame implements ActionListener {
         productListPanel.setLayout(null);
 
         // Create a JPanel to hold the grid
-        JPanel panel = new JPanel(new GridLayout(101, 5));
+        JPanel panel = new JPanel(new GridLayout(products.size() + 1, 5));
 
         // Adding headers to the first row
         String[] headers = {"ID", "Name", "Price", "Stock", "Edit"};
@@ -286,13 +296,24 @@ public class showAdmin extends JFrame implements ActionListener {
         }
 
         // Add 100 rows of 8 JTextFields and 1 JButton
-        for (int row = 0; row < 100; row++) {
-            for (int col = 0; col < 4; col++) {
-                panel.add(new JTextField());
-            }
-            JButton button = new JButton("Button " + (row + 1)); // To differentiate buttons
+//        for (int row = 0; row < 100; row++) {
+//            for (int col = 0; col < 4; col++) {
+//                panel.add(new JTextField());
+//            }
+//            JButton button = new JButton("Button " + (row + 1)); // To differentiate buttons
+//            panel.add(button);
+//        }
+
+        // Add all product of 4 JTextFields and 1 JButton
+        for (Product product : products) {
+            panel.add(new JTextField(String.valueOf(product.getID())));
+            panel.add(new JTextField(product.getProductName()));
+            panel.add(new JTextField(String.valueOf(product.getPrice())));
+            panel.add(new JTextField(String.valueOf(product.getStock())));
+            JButton button = new JButton("Edit");
             panel.add(button);
         }
+
 
         // Add the panel to the JFrame
         add(new JScrollPane(panel));
@@ -312,7 +333,7 @@ public class showAdmin extends JFrame implements ActionListener {
         userListPanel.setLayout(null);
 
         // Create a JPanel to hold the grid
-        JPanel panel = new JPanel(new GridLayout(101, 9));
+        JPanel panel = new JPanel(new GridLayout(users.size() + 1, 9));
 
         // Adding headers to the first row
         String[] headers = {"ID", "Username", "Name", "Phone number", "Email", "Address", "Credit", "Role", "Edit"};
@@ -321,11 +342,25 @@ public class showAdmin extends JFrame implements ActionListener {
         }
 
         // Add 100 rows of 8 JTextFields and 1 JButton
-        for (int row = 0; row < 100; row++) {
-            for (int col = 0; col < 8; col++) {
-                panel.add(new JTextField());
-            }
-            JButton button = new JButton("Button " + (row + 1)); // To differentiate buttons
+//        for (int row = 0; row < 100; row++) {
+//            for (int col = 0; col < 8; col++) {
+//                panel.add(new JTextField());
+//            }
+//            JButton button = new JButton("Button " + (row + 1)); // To differentiate buttons
+//            panel.add(button);
+//        }
+
+        // Add all users of 8 JTextFields and 1 JButton
+        for (User user : users) {
+            panel.add(new JTextField(String.valueOf(user.getID())));
+            panel.add(new JTextField(user.getUserName()));
+            panel.add(new JTextField(user.getName()));
+            panel.add(new JTextField(user.getPhoneNumber()));
+            panel.add(new JTextField(user.getEmail()));
+            panel.add(new JTextField(user.getAddress()));
+            panel.add(new JTextField(String.valueOf(user.getCredit())));
+            panel.add(new JTextField(user.getRole()));
+            JButton button = new JButton("Edit");
             panel.add(button);
         }
 
