@@ -82,6 +82,7 @@ public class LoginForm extends JFrame implements ActionListener {
         //to disable resizable option
         this.setResizable(false);
 
+        this.setVisible(true);
     }
 
     @Override
@@ -127,6 +128,7 @@ public class LoginForm extends JFrame implements ActionListener {
             }
         } else if (e.getSource() == signupButton) {
             JOptionPane.showMessageDialog(this, "Sign Up button clicked!");
+            new SingupForm();
         }
     }
 
