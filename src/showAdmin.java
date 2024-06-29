@@ -80,15 +80,7 @@ public class showAdmin  implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLayout(null);
 
-        homeButton.addActionListener(this);
-        addButton.addActionListener(this);
-        productListButton.addActionListener(this);
-        userListButton.addActionListener(this);
-        propertyButton.addActionListener(this);
-        storeButton.addActionListener(this);
-        addNewProductButton.addActionListener(this);
         addPhoto.addActionListener(this);
-
 
         mainPanel();
 
@@ -394,8 +386,8 @@ public class showAdmin  implements ActionListener {
         propertyPanel.add(sellingAmount);
 
         //pictures
-        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p2.jpg"));
-        imageLabel.setBounds(500,60,500,500);
+        JLabel imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\money.png"));
+        imageLabel.setBounds(370,60,500,500);
         propertyPanel.add(imageLabel);
 
         //Action listeners
