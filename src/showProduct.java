@@ -31,10 +31,14 @@ public class showProduct extends JFrame {
     static JPanel homePanel = new JPanel();
     //fields
     static JTextField searchField = new JTextField();
+    //labels
+    static JLabel productNameExample1 = new JLabel("name1");
+    static JLabel productNameExample2 = new JLabel("name2");
+    static JLabel productNameExample3 = new JLabel("name3");
     //Buttons
-    static JButton productdetails3 = new JButton("Details");
-    static JButton productdetails1 = new JButton("Details");
-    static JButton productdetails2 = new JButton("Details");
+    static JButton addToCartButton1 = new JButton("Add to cart");
+    static JButton addToCartButton2 = new JButton("Add to cart");
+    static JButton addToCartButton3 = new JButton("Add to cart");
     static JButton showMoreButton = new JButton("More");
 
 
@@ -95,15 +99,15 @@ public class showProduct extends JFrame {
 
 
 
-    //productDetails panel
-    static JPanel productDetailsPanel = new JPanel();
-    //labels
-    static JLabel name = new JLabel("Name :");
-    static JLabel price = new JLabel("Price :");
-    static JLabel numberOfProducts = new JLabel("Stock :");
-    static JLabel addToCart = new JLabel("Add to cart :");
-    //Buttons
-    static JButton addToCartButton = new JButton("Click");
+//    //productDetails panel
+//    static JPanel productDetailsPanel = new JPanel();
+//    //labels
+//    static JLabel name = new JLabel("Name :");
+//    static JLabel price = new JLabel("Price :");
+//    static JLabel numberOfProducts = new JLabel("Stock :");
+//    static JLabel addToCart = new JLabel("Add to cart :");
+//    //Buttons
+//    static JButton addToCartButton = new JButton("Click");
 
 
 
@@ -220,21 +224,34 @@ public class showProduct extends JFrame {
         homeButton.setFont(fontEnglishButton);
         frame.add(homeButton);
 
-        productdetails1.setBounds(170, 450, 100, 30);
-        productdetails1.setFont(fontEnglishButton);
-        homePanel.add(productdetails1);
+        addToCartButton1.setBounds(130, 450, 150, 30);
+        addToCartButton1.setFont(fontEnglishButton);
+        homePanel.add(addToCartButton1);
 
-        productdetails2.setBounds(550, 450, 100, 30);
-        productdetails2.setFont(fontEnglishButton);
-        homePanel.add(productdetails2);
+        addToCartButton2.setBounds(520, 450, 150, 30);
+        addToCartButton2.setFont(fontEnglishButton);
+        homePanel.add(addToCartButton2);
 
-        productdetails3.setBounds(930, 450, 100, 30);
-        productdetails3.setFont(fontEnglishButton);
-        homePanel.add(productdetails3);
+        addToCartButton3.setBounds(910, 450, 150, 30);
+        addToCartButton3.setFont(fontEnglishButton);
+        homePanel.add(addToCartButton3);
 
         showMoreButton.setBounds(1100, 300, 100, 100);
         showMoreButton.setFont(fontEnglishButton);
         homePanel.add(showMoreButton);
+
+        //labels
+        productNameExample1.setBounds(180, 400, 150, 30);
+        productNameExample1.setFont(fontEnglishText);
+        homePanel.add(productNameExample1);
+
+        productNameExample2.setBounds(570, 400, 150, 30);
+        productNameExample2.setFont(fontEnglishText);
+        homePanel.add(productNameExample2);
+
+        productNameExample3.setBounds(960, 400, 150, 30);
+        productNameExample3.setFont(fontEnglishText);
+        homePanel.add(productNameExample3);
 
 
         //pictures
@@ -275,43 +292,35 @@ public class showProduct extends JFrame {
             }
         });
 
-        productdetails1.addActionListener(new ActionListener() {
+        addToCartButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                JLabel imageLabel1 = new JLabel(products1[0].getImageIcon());
-
-
                 frame.remove(homePanel);
-                productDetails(products1[0].getProductName(), products1[0].getPrice(), products1[0].getStock(), imageLabel1 , products1[0].getID());
+                addToCart();
                 frame.repaint();
                 frame.revalidate();
             }
         });
 
-        productdetails2.addActionListener(new ActionListener() {
+        addToCartButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                JLabel imageLabel2 = new JLabel(products1[1].getImageIcon());
-
-
                 frame.remove(homePanel);
-                productDetails(products1[1].getProductName(), products1[1].getPrice(), products1[1].getStock(), imageLabel2 , products1[1].getID());
+                addToCart();
                 frame.repaint();
                 frame.revalidate();
 
             }
         });
 
-        productdetails3.addActionListener(new ActionListener() {
+        addToCartButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                JLabel imageLabel3 = new JLabel(products1[2].getImageIcon());
-
                 frame.remove(homePanel);
-                productDetails(products1[2].getProductName(), products1[2].getPrice(), products1[2].getStock(), imageLabel3 , products1[2].getID());
+                addToCart();
                 frame.repaint();
                 frame.revalidate();
 
@@ -645,103 +654,103 @@ public class showProduct extends JFrame {
 
     }
 
-    private static void productDetails(String Name, double Price, int Stock ,JLabel imageLabel , int Id )
-    {
-
-        productDetailsPanel.setSize(1200,700);
-        productDetailsPanel.setBackground(Color.LIGHT_GRAY);
-        productDetailsPanel.setLayout(null);
-
-        //labels
-
-        name.setBounds(50, 0, 100, 100);
-        name.setFont(fontEnglishText);
-        name.setText(Name);
-        productDetailsPanel.add(name);
-
-        price.setBounds(50, 100, 100, 100);
-        price.setFont(fontEnglishText);
-        price.setText(Double.toString(Price));
-        productDetailsPanel.add(price);
-
-        numberOfProducts.setBounds(50, 200, 100, 100);
-        numberOfProducts.setFont(fontEnglishText);
-        numberOfProducts.setText(Integer.toString(Stock));
-        productDetailsPanel.add(numberOfProducts);
-
-        addToCart.setBounds(50, 300, 100, 100);
-        addToCart.setFont(fontEnglishText);
-        productDetailsPanel.add(addToCart);
-
-
-
-        imageLabel.setBounds(810,150,350,250);
-        productDetailsPanel.add(imageLabel);
-
-        //buttons
-        addToCartButton.setBounds(150, 330, 150, 35);
-        addToCartButton.setFont(fontEnglishButton);
-        productDetailsPanel.add(addToCartButton);
-
-
-
-
-
-        addToCartButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                try {
-                    FileWriter writer = new FileWriter("cart.txt",true);
-                    BufferedWriter writer1 = new BufferedWriter(writer);
-                    writer1.write(Id + ",");
-                    writer1.close();
-                }
-                catch (IOException ee)
-                {
-                    System.out.println("error");
-                }
-            }
-        });
-        homeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.remove(productDetailsPanel);
-                home();
-                frame.repaint();
-                frame.revalidate();
-
-
-            }
-        });
-
-        cartButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.remove(productDetailsPanel);
-                cart();
-                frame.repaint();
-                frame.revalidate();
-
-            }
-        });
-
-        profileButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.remove(productDetailsPanel);
-                profile();
-                frame.repaint();
-                frame.revalidate();
-
-            }
-        });
-
-
-
-        frame.add(productDetailsPanel);
-
-    }
+//    private static void productDetails(String Name, double Price, int Stock ,JLabel imageLabel , int Id )
+//    {
+//
+//        productDetailsPanel.setSize(1200,700);
+//        productDetailsPanel.setBackground(Color.LIGHT_GRAY);
+//        productDetailsPanel.setLayout(null);
+//
+//        //labels
+//
+//        name.setBounds(50, 0, 100, 100);
+//        name.setFont(fontEnglishText);
+//        name.setText(Name);
+//        productDetailsPanel.add(name);
+//
+//        price.setBounds(50, 100, 100, 100);
+//        price.setFont(fontEnglishText);
+//        price.setText(Double.toString(Price));
+//        productDetailsPanel.add(price);
+//
+//        numberOfProducts.setBounds(50, 200, 100, 100);
+//        numberOfProducts.setFont(fontEnglishText);
+//        numberOfProducts.setText(Integer.toString(Stock));
+//        productDetailsPanel.add(numberOfProducts);
+//
+//        addToCart.setBounds(50, 300, 100, 100);
+//        addToCart.setFont(fontEnglishText);
+//        productDetailsPanel.add(addToCart);
+//
+//
+//
+//        imageLabel.setBounds(810,150,350,250);
+//        productDetailsPanel.add(imageLabel);
+//
+//        //buttons
+//        addToCartButton.setBounds(150, 330, 150, 35);
+//        addToCartButton.setFont(fontEnglishButton);
+//        productDetailsPanel.add(addToCartButton);
+//
+//
+//
+//
+//
+//        addToCartButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//
+//                try {
+//                    FileWriter writer = new FileWriter("cart.txt",true);
+//                    BufferedWriter writer1 = new BufferedWriter(writer);
+//                    writer1.write(Id + ",");
+//                    writer1.close();
+//                }
+//                catch (IOException ee)
+//                {
+//                    System.out.println("error");
+//                }
+//            }
+//        });
+//        homeButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                frame.remove(productDetailsPanel);
+//                home();
+//                frame.repaint();
+//                frame.revalidate();
+//
+//
+//            }
+//        });
+//
+//        cartButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                frame.remove(productDetailsPanel);
+//                cart();
+//                frame.repaint();
+//                frame.revalidate();
+//
+//            }
+//        });
+//
+//        profileButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                frame.remove(productDetailsPanel);
+//                profile();
+//                frame.repaint();
+//                frame.revalidate();
+//
+//            }
+//        });
+//
+//
+//
+//        frame.add(productDetailsPanel);
+//
+//    }
 
 
 
@@ -1053,6 +1062,25 @@ public class showProduct extends JFrame {
 
         productPanel.add(infoPanel, BorderLayout.SOUTH);
         return productPanel;
+    }
+
+    public static void addToCart(){
+//        addToCartButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//
+//                try {
+//                    FileWriter writer = new FileWriter("cart.txt",true);
+//                    BufferedWriter writer1 = new BufferedWriter(writer);
+//                    writer1.write(Id + ",");
+//                    writer1.close();
+//                }
+//                catch (IOException ee)
+//                {
+//                    System.out.println("error");
+//                }
+//            }
+//        });
     }
 
 
