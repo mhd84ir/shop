@@ -337,10 +337,9 @@ public class showProduct extends JFrame {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.remove(homePanel);
-                search();
-                frame.repaint();
-                frame.revalidate();
+
+                search(searchField.getText());
+
 
             }
         });
@@ -1108,9 +1107,76 @@ public class showProduct extends JFrame {
     }
 
 
-    public static void search(){
-        //TODO
+    public static void search(String text){
+        Product product1 = new Product();
+
+
+        if (product1.search(text) == true) {
+
+
+            JFrame frame2 = new JFrame("Product Details");
+            frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame2.setSize(400, 500);
+            frame2.setLocationRelativeTo(null);
+
+            JPanel panel = createProductDetailPanel(product1);
+            frame2.add(panel);
+
+            frame2.setVisible(true);
+
+        }
+
+        else
+        {
+            JOptionPane.showMessageDialog(frame, "product is not found");
+        }
+
     }
+
+     public static JPanel createProductDetailPanel(Product product) {
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout(10, 10));
+
+        // نمایش تصویر محصول
+        JLabel imageLabel = new JLabel();
+        ImageIcon originalIcon = product.getImageIcon();
+        Image scaledImage = originalIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        imageLabel.setIcon(new ImageIcon(scaledImage));
+        imageLabel.setHorizontalAlignment(JLabel.CENTER);
+        mainPanel.add(imageLabel, BorderLayout.NORTH);
+
+        // نمایش مشخصات محصول
+        JPanel detailsPanel = new JPanel();
+        detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS));
+
+        JLabel nameLabel = new JLabel("Name: " + product.getProductName(), JLabel.CENTER);
+        nameLabel.setFont(new Font("Serif", Font.BOLD, 16));
+        nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        detailsPanel.add(nameLabel);
+
+        JLabel priceLabel = new JLabel("Price: $" + product.getPrice(), JLabel.CENTER);
+        priceLabel.setFont(new Font("Serif", Font.PLAIN, 14));
+        priceLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        detailsPanel.add(priceLabel);
+
+        JLabel stockLabel = new JLabel("Stock: " + product.getStock(), JLabel.CENTER);
+        stockLabel.setFont(new Font("Serif", Font.PLAIN, 14));
+        stockLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        detailsPanel.add(stockLabel);
+
+        JButton addToCard = new JButton("add to card");
+         addToCard.setFont(new Font("Serif", Font.PLAIN, 14));
+         addToCard.setAlignmentX(Component.CENTER_ALIGNMENT);
+         detailsPanel.add(addToCard);
+
+
+        mainPanel.add(detailsPanel, BorderLayout.CENTER);
+
+        return mainPanel;
+    }
+
+
+
 
 
 

@@ -190,4 +190,53 @@ public class Product extends Database {
 
 
 
+
+    public boolean search(String name)
+    {
+        try (Connection connection = getConnection()) {
+            String query = "SELECT * FROM Product WHERE productName = ?";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, name);
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+
+                        setID(resultSet.getInt("ID"));
+                        setProductName(resultSet.getString("productName"));
+                        setPrice(resultSet.getDouble("price"));
+                        setStock(resultSet.getInt("stock"));
+                        byte[] imageBytes = resultSet.getBytes("photo");
+                        if (imageBytes != null) {
+                            try {
+
+                                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                baos.write(imageBytes);
+                                baos.flush();
+                                InputStream imageStream =  new ByteArrayInputStream(baos.toByteArray());
+                                imageIcon = new ImageIcon(imageBytes);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            System.out.println("Image not found in database.");
+                        }
+
+
+
+
+                        return true;
+
+
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error during search: " + e.getMessage());
+        }
+
+        return false;
+    }
+
+
 }
