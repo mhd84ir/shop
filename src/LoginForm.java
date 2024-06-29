@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class LoginForm extends JFrame implements ActionListener {
     private JTextField usernameField;
@@ -89,7 +93,34 @@ public class LoginForm extends JFrame implements ActionListener {
             // Placeholder for actual authentication logic
             if (new Signin().checkUsernameAndPassword(username,password)) {
                 JOptionPane.showMessageDialog(this, "Login successful!");
-                new showProduct();
+                String[] info = new String[2];
+
+                try {
+                    FileReader reader = new FileReader(new File("data.txt"));
+                    BufferedReader reader1 = new BufferedReader(reader);
+                    String line = reader1.readLine();
+
+
+
+                    info = line.split(",");
+
+                    reader1.close();
+                }
+                catch (IOException ee)
+                {
+                    System.out.println("error open");
+                }
+                User user = new User();
+
+                user.getInfoDB(Integer.parseInt(info[0]),info[1]);
+                if (user.getRole().equals("admin"))
+                {
+                    new showAdmin();
+                }
+                else
+                {
+                     new showProduct();
+                }
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid username or password.", "Error", JOptionPane.ERROR_MESSAGE);

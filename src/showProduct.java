@@ -362,6 +362,7 @@ public class showProduct extends JFrame {
 
         creditLabel.setBounds(750, 5, 200, 100);
         creditLabel.setFont(fontEnglishText);
+        creditLabel.setText("your credit is : " + Double.toString(user.getCredit()));
         profilePanel.add(creditLabel);
 
         nameLabel.setBounds(50, 0, 100, 100);
