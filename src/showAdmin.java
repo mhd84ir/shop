@@ -32,8 +32,6 @@ public class showAdmin extends JFrame implements ActionListener {
     static JButton userListButton = new JButton("Users List");
     static JButton propertyButton = new JButton("Property");
     static JButton storeButton = new JButton("Store");
-
-
     // this is for picture
     JLabel imageLabel;
     JFileChooser fileChooser = new JFileChooser();
@@ -41,27 +39,25 @@ public class showAdmin extends JFrame implements ActionListener {
     ImageIcon imageIcon;
 
 
+
     //add panel
     static JPanel addPanel = new JPanel();
-
     //text fields
     static JTextField nameField = new JTextField();
     static JTextField priceField = new JTextField();
     static JTextField stockField = new JTextField();
-
     //labels
     static JLabel nameLabel = new JLabel("name :");
     static JLabel priceLabel = new JLabel("Price :");
     static JLabel stockLabel = new JLabel("Stock :");
-
     //buttons
     static JButton addNewProductButton  = new JButton("Add");
     static JButton addPhoto  = new JButton("Add photo");
 
 
+
     //productList panel
     static JPanel productListPanel = new JPanel();
-
     //users list panel
     static JPanel userListPanel = new JPanel();
 
