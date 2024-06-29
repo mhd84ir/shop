@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class showProduct extends JFrame{
+public class showProduct extends JFrame {
     static JFrame frame = new JFrame("Shop");
 
     static ArrayList<Product> products = new ArrayList<Product>();
@@ -343,21 +343,24 @@ public class showProduct extends JFrame{
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.remove(homePanel);
+
                 if (end + 3 <= products.size())
                 {
                     start += 3;
                     end += 3;
+                    frame.remove(homePanel);
                     home();
                 } else if (end + 2 <= products.size())
                 {
                     start += 2;
                     end += 2;
+                    frame.remove(homePanel);
                     home();
                 } else if (end + 1 <= products.size())
                 {
                     start += 1;
                     end += 1;
+                    frame.remove(homePanel);
                     home();
                 }
                 frame.repaint();
@@ -370,21 +373,24 @@ public class showProduct extends JFrame{
         previousPageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.remove(nextPagePanel);
+
                 if (start - 3 >= 0)
                 {
                     start -= 3;
                     end -= 3;
+                    frame.remove(homePanel);
                     home();
                 } else if (start - 2 >= 0)
                 {
                     start -= 2;
                     end -= 2;
+                    frame.remove(homePanel);
                     home();
                 } else if (start - 1 >= 0)
                 {
                     start -= 1;
                     end -= 1;
+                    frame.remove(homePanel);
                     home();
                 }
 
@@ -992,6 +998,16 @@ public class showProduct extends JFrame{
     }
 
 
+    //next page  panel
+    private void nextPagePanel(){
+        previousPurchasePanel.setSize(1200,700);
+        previousPurchasePanel.setBackground(Color.LIGHT_GRAY);
+        previousPurchasePanel.setLayout(null);
+
+
+
+
+    }
 
 
     public static void main(String[] args) {
