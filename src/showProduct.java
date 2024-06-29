@@ -7,9 +7,16 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class showProduct {
     static JFrame frame = new JFrame("Shop");
+
+    static ArrayList<Product> products = new ArrayList<Product>();
+
+    static int start = 0 , end = 3;
+    static Product product = new Product();
+
 
     //Fonts
     static Font fontEnglishText = new Font("Times New Roman", Font.BOLD, 15);
@@ -120,6 +127,10 @@ public class showProduct {
     public showProduct() {
 
 
+        products = product.getAllProductFromDB();
+
+
+
         String[] info = new String[2];
 
         try {
@@ -142,6 +153,8 @@ public class showProduct {
 
 
 
+
+
         Dimension frameSize = new Dimension(1200,700);
         frame.setSize(frameSize);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -156,6 +169,24 @@ public class showProduct {
 
     private static void home()
     {
+        //get products from db
+
+        Product [] products1 = new Product[3];
+        for (int i = 0; i < 3; i++) {
+            products1[i] = new Product();
+        }
+        int j = 0;
+        for (int i = start; i < end; i++) {
+
+            products1[j] = products.get(i);
+            j++;
+        }
+
+
+
+
+
+
         homePanel.setSize(1200,700);
         homePanel.setBackground(Color.LIGHT_GRAY);
         homePanel.setLayout(null);
@@ -180,34 +211,39 @@ public class showProduct {
         homeButton.setFont(fontEnglishButton);
         frame.add(homeButton);
 
-        productdetails3.setBounds(170, 450, 100, 30);
-        productdetails3.setFont(fontEnglishButton);
-        homePanel.add(productdetails3);
-
-        productdetails1.setBounds(550, 450, 100, 30);
+        productdetails1.setBounds(170, 450, 100, 30);
         productdetails1.setFont(fontEnglishButton);
         homePanel.add(productdetails1);
 
-        productdetails2.setBounds(930, 450, 100, 30);
+        productdetails2.setBounds(550, 450, 100, 30);
         productdetails2.setFont(fontEnglishButton);
         homePanel.add(productdetails2);
+
+        productdetails3.setBounds(930, 450, 100, 30);
+        productdetails3.setFont(fontEnglishButton);
+        homePanel.add(productdetails3);
 
         nextButton.setBounds(1140, 325, 60, 50);
         nextButton.setFont(fontEnglishButton);
         homePanel.add(nextButton);
 
 
+        previousPageButton.setBounds(0, 325, 60, 50);
+        previousPageButton.setFont(fontEnglishButton);
+        homePanel.add(previousPageButton);
+
+
         //pictures
 
-        JLabel imageLabel1 = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p5.jpg"));
+        JLabel imageLabel1 = new JLabel(products1[0].getImageIcon());
         imageLabel1.setBounds(40,150,350,250);
         homePanel.add(imageLabel1);
 
-        JLabel imageLabel2 = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p2.jpg"));
+        JLabel imageLabel2 = new JLabel(products1[1].getImageIcon());
         imageLabel2.setBounds(425,150,350,250);
         homePanel.add(imageLabel2);
 
-        JLabel imageLabel3 = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p6.jpg"));
+        JLabel imageLabel3 = new JLabel(products1[2].getImageIcon());
         imageLabel3.setBounds(810,150,350,250);
         homePanel.add(imageLabel3);
 
@@ -235,34 +271,17 @@ public class showProduct {
             }
         });
 
-        productdetails3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                JLabel imageLabel2 = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p5.jpg"));
-                imageLabel2.setBounds(425,150,350,250);
-                productDetailsPanel.add(imageLabel2);
-
-                frame.remove(homePanel);
-                productDetails();
-                frame.repaint();
-                frame.revalidate();
-            }
-        });
-
         productdetails1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                JLabel imageLabel1 = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p2.jpg"));
-                imageLabel1.setBounds(40,150,350,250);
-                productDetailsPanel.add(imageLabel1);
+                JLabel imageLabel1 = new JLabel(products1[0].getImageIcon());
+
 
                 frame.remove(homePanel);
-                productDetails();
+                productDetails(products1[0].getProductName(), products1[0].getPrice(), products1[0].getStock(), imageLabel1);
                 frame.repaint();
                 frame.revalidate();
-
             }
         });
 
@@ -270,12 +289,25 @@ public class showProduct {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                JLabel imageLabel3 = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p5.jpg"));
-                imageLabel3.setBounds(810,150,350,250);
-                productDetailsPanel.add(imageLabel3);
+                JLabel imageLabel2 = new JLabel(products1[1].getImageIcon());
+
 
                 frame.remove(homePanel);
-                productDetails();
+                productDetails(products1[1].getProductName(), products1[1].getPrice(), products1[1].getStock(), imageLabel2);
+                frame.repaint();
+                frame.revalidate();
+
+            }
+        });
+
+        productdetails3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                JLabel imageLabel3 = new JLabel(products1[2].getImageIcon());
+
+                frame.remove(homePanel);
+                productDetails(products1[2].getProductName(), products1[2].getPrice(), products1[2].getStock(), imageLabel3);
                 frame.repaint();
                 frame.revalidate();
 
@@ -286,7 +318,50 @@ public class showProduct {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.remove(homePanel);
-                nextPage();
+                if (end + 3 <= products.size())
+                {
+                    start += 3;
+                    end += 3;
+                    home();
+                } else if (end + 2 <= products.size())
+                {
+                    start += 2;
+                    end += 2;
+                    home();
+                } else if (end + 1 <= products.size())
+                {
+                    start += 1;
+                    end += 1;
+                    home();
+                }
+                frame.repaint();
+                frame.revalidate();
+
+            }
+        });
+
+
+        previousPageButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(nextPagePanel);
+                if (start - 3 >= 0)
+                {
+                    start -= 3;
+                    end -= 3;
+                    home();
+                } else if (start - 2 >= 0)
+                {
+                    start -= 2;
+                    end -= 2;
+                    home();
+                } else if (start - 1 >= 0)
+                {
+                    start -= 1;
+                    end -= 1;
+                    home();
+                }
+
                 frame.repaint();
                 frame.revalidate();
 
@@ -399,6 +474,7 @@ public class showProduct {
         cartPanel.add(priceExample3);
 
         //Pictures
+
 
         JLabel imageLabel1 = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p5.jpg"));
         imageLabel1.setBounds(40,150,350,250);
@@ -581,8 +657,9 @@ public class showProduct {
 
     }
 
-    private static void productDetails()
+    private static void productDetails(String Name, double Price, int Stock ,JLabel imageLabel )
     {
+
         productDetailsPanel.setSize(1200,700);
         productDetailsPanel.setBackground(Color.LIGHT_GRAY);
         productDetailsPanel.setLayout(null);
@@ -591,21 +668,31 @@ public class showProduct {
 
         name.setBounds(50, 0, 100, 100);
         name.setFont(fontEnglishText);
+        name.setText(Name);
         productDetailsPanel.add(name);
 
         price.setBounds(50, 100, 100, 100);
         price.setFont(fontEnglishText);
+        price.setText(Double.toString(Price));
         productDetailsPanel.add(price);
 
         numberOfProducts.setBounds(50, 200, 100, 100);
         numberOfProducts.setFont(fontEnglishText);
+        numberOfProducts.setText(Integer.toString(Stock));
         productDetailsPanel.add(numberOfProducts);
+
+
+        imageLabel.setBounds(810,150,350,250);
+        productDetailsPanel.add(imageLabel);
 
         //buttons
 
         addToCartButton.setBounds(150, 330, 150, 35);
         addToCartButton.setFont(fontEnglishButton);
         productDetailsPanel.add(addToCartButton);
+
+
+
 
 
         homeButton.addActionListener(new ActionListener() {
@@ -648,35 +735,7 @@ public class showProduct {
 
     }
 
-    private static void nextPage(){
-        nextPagePanel.setSize(1200,700);
-        nextPagePanel.setBackground(Color.LIGHT_GRAY);
-        nextPagePanel.setLayout(null);
 
-        //Buttons
-        nextPageButton.setBounds(1140, 325, 60, 50);
-        nextPageButton.setFont(fontEnglishButton);
-        nextPagePanel.add(nextPageButton);
-
-        previousPageButton.setBounds(0, 325, 60, 50);
-        previousPageButton.setFont(fontEnglishButton);
-        nextPagePanel.add(previousPageButton);
-
-        //Action listeners
-        previousPageButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.remove(nextPagePanel);
-                home();
-                frame.repaint();
-                frame.revalidate();
-
-            }
-        });
-
-        frame.add(nextPagePanel);
-
-    }
 
     public static void main(String[] args) {
         new showProduct();

@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Product extends Database {
 
@@ -17,6 +18,9 @@ public class Product extends Database {
     private File picture ;
 
     private ImageIcon imageIcon;
+
+
+    private ArrayList <Product> products = new ArrayList<Product>();
 
 
     public void setID(int ID) {
@@ -37,6 +41,10 @@ public class Product extends Database {
 
     public void setPicture(File picture) {
         this.picture = picture;
+    }
+
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
     }
 
     public void setImageIcon(ImageIcon imageIcon) {
@@ -61,6 +69,10 @@ public class Product extends Database {
 
     public File getPicture() {
         return picture;
+    }
+
+    public ArrayList<Product> getProducts() {
+        return products;
     }
 
     public ImageIcon getImageIcon() {
@@ -132,6 +144,48 @@ public class Product extends Database {
 
         return false;
     }
+
+
+    // get all product from database and add to products
+    public ArrayList<Product> getAllProductFromDB() {
+        try (Connection connection = getConnection()) {
+            String query = "SELECT * FROM Product";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        Product product = new Product();
+                        product.setID(resultSet.getInt("ID"));
+                        product.setProductName(resultSet.getString("productName"));
+                        product.setPrice(resultSet.getDouble("price"));
+                        product.setStock(resultSet.getInt("stock"));
+                        byte[] imageBytes = resultSet.getBytes("photo");
+                        if (imageBytes != null) {
+                            try {
+
+                                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                baos.write(imageBytes);
+                                baos.flush();
+                                InputStream imageStream =  new ByteArrayInputStream(baos.toByteArray());
+                                product.setImageIcon(new ImageIcon(imageBytes));
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            System.out.println("Image not found in database.");
+                        }
+                        products.add(product);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error during search: " + e.getMessage());
+        }
+
+        return products;
+    }
+
 
 
 
