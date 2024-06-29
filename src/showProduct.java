@@ -44,33 +44,6 @@ public class showProduct extends JFrame {
 
 
 
-
-    //cart panel
-    static JPanel cartPanel = new JPanel();
-    //buttons
-    static JButton addButton = new JButton("+");
-    static JButton addButton1 = new JButton("+");
-    static JButton addButton2 = new JButton("+");
-    static JButton removeButton = new JButton("-");
-    static JButton removeButton1 = new JButton("-");
-    static JButton removeButton2 = new JButton("-");
-    static JButton buyButton = new JButton("Buy :)");
-    //labels
-    static JLabel productName1 = new JLabel("Name :");
-    static JLabel productName2 = new JLabel("Name :");
-    static JLabel productName3 = new JLabel("Name :");
-    static JLabel productPriceLabel1 = new JLabel("Price :");
-    static JLabel productPriceLabel2 = new JLabel("Price :");
-    static JLabel productPriceLabel3 = new JLabel("Price :");
-    static JLabel nameExample1 = new JLabel("Pink");
-    static JLabel nameExample2 = new JLabel("Green");
-    static JLabel nameExample3 = new JLabel("Blue");
-    static JLabel priceExample1 = new JLabel("1000");
-    static JLabel priceExample2 = new JLabel("1500");
-    static JLabel priceExample3 = new JLabel("2000");
-
-
-
     static User user = new User();
 
 
@@ -276,8 +249,7 @@ public class showProduct extends JFrame {
         cartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.remove(homePanel);
-                cart();
+                showMoreProduct();
                 frame.repaint();
                 frame.revalidate();
 
@@ -350,149 +322,6 @@ public class showProduct extends JFrame {
 
     }
 
-    private static void cart()
-    {
-        cartPanel.setSize(1200,700);
-        cartPanel.setBackground(Color.LIGHT_GRAY);
-        cartPanel.setLayout(null);
-
-        //Buttons
-
-        addButton.setBounds(815, 300, 50, 50);
-        addButton.setFont(fontEnglishButton);
-        cartPanel.add(addButton);
-
-        addButton1.setBounds(430, 300, 50, 50);
-        addButton1.setFont(fontEnglishButton);
-        cartPanel.add(addButton1);
-
-
-        addButton2.setBounds(50, 300, 50, 50);
-        addButton2.setFont(fontEnglishButton);
-        cartPanel.add(addButton2);
-
-
-        removeButton.setBounds(815, 350, 50, 50);
-        removeButton.setFont(fontEnglishButton);
-        cartPanel.add(removeButton);
-
-        removeButton1.setBounds(430, 350, 50, 50);
-        removeButton1.setFont(fontEnglishButton);
-        cartPanel.add(removeButton1);
-
-
-        removeButton2.setBounds(50, 350, 50, 50);
-        removeButton2.setFont(fontEnglishButton);
-        cartPanel.add(removeButton2);
-
-        buyButton.setBounds(520, 450, 150, 40);
-        buyButton.setFont(fontEnglishButton);
-        cartPanel.add(buyButton);
-
-        //Labels
-
-        productName1.setBounds(815, 150, 50, 50);
-        productName1.setFont(fontEnglishText);
-        cartPanel.add(productName1);
-
-
-        productName2.setBounds(430, 150, 50, 50);
-        productName2.setFont(fontEnglishText);
-        cartPanel.add(productName2);
-
-
-        productName3.setBounds(50, 150, 50, 50);
-        productName3.setFont(fontEnglishText);
-        cartPanel.add(productName3);
-
-
-        productPriceLabel1.setBounds(815, 220, 50, 50);
-        productPriceLabel1.setFont(fontEnglishText);
-        cartPanel.add(productPriceLabel1);
-
-
-        productPriceLabel2.setBounds(430, 220, 50, 50);
-        productPriceLabel2.setFont(fontEnglishText);
-        cartPanel.add(productPriceLabel2);
-
-
-        productPriceLabel3.setBounds(50, 220, 50, 50);
-        productPriceLabel3.setFont(fontEnglishText);
-        cartPanel.add(productPriceLabel3);
-
-
-        nameExample1.setBounds(815, 180, 50, 50);
-        nameExample1.setFont(fontEnglishText);
-        cartPanel.add(nameExample1);
-
-
-        nameExample2.setBounds(430, 180, 50, 50);
-        nameExample2.setFont(fontEnglishText);
-        cartPanel.add(nameExample2);
-
-
-        nameExample3.setBounds(50, 180, 50, 50);
-        nameExample3.setFont(fontEnglishText);
-        cartPanel.add(nameExample3);
-
-
-        priceExample1.setBounds(815, 250, 50, 50);
-        priceExample1.setFont(fontEnglishText);
-        cartPanel.add(priceExample1);
-
-
-        priceExample2.setBounds(430, 250, 50, 50);
-        priceExample2.setFont(fontEnglishText);
-        cartPanel.add(priceExample2);
-
-
-        priceExample3.setBounds(50, 250, 50, 50);
-        priceExample3.setFont(fontEnglishText);
-        cartPanel.add(priceExample3);
-
-        //Pictures
-
-
-        JLabel imageLabel1 = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p5.jpg"));
-        imageLabel1.setBounds(40,150,350,250);
-        cartPanel.add(imageLabel1);
-
-        JLabel imageLabel2 = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p2.jpg"));
-        imageLabel2.setBounds(425,150,350,250);
-        cartPanel.add(imageLabel2);
-
-        JLabel imageLabel3 = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p6.jpg"));
-        imageLabel3.setBounds(810,150,350,250);
-        cartPanel.add(imageLabel3);
-
-        //Action Listeners
-        homeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.remove(cartPanel);
-                home();
-                frame.repaint();
-                frame.revalidate();
-
-            }
-        });
-
-        profileButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.remove(cartPanel);
-                profile();
-                frame.repaint();
-                frame.revalidate();
-
-            }
-        });
-
-
-        frame.add(cartPanel);
-
-
-    }
 
     private static void profile()
     {
@@ -596,8 +425,7 @@ public class showProduct extends JFrame {
         cartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.remove(profilePanel);
-                cart();
+                showMoreProduct();
                 frame.repaint();
                 frame.revalidate();
 
@@ -663,104 +491,6 @@ public class showProduct extends JFrame {
 
     }
 
-//    private static void productDetails(String Name, double Price, int Stock ,JLabel imageLabel , int Id )
-//    {
-//
-//        productDetailsPanel.setSize(1200,700);
-//        productDetailsPanel.setBackground(Color.LIGHT_GRAY);
-//        productDetailsPanel.setLayout(null);
-//
-//        //labels
-//
-//        name.setBounds(50, 0, 100, 100);
-//        name.setFont(fontEnglishText);
-//        name.setText(Name);
-//        productDetailsPanel.add(name);
-//
-//        price.setBounds(50, 100, 100, 100);
-//        price.setFont(fontEnglishText);
-//        price.setText(Double.toString(Price));
-//        productDetailsPanel.add(price);
-//
-//        numberOfProducts.setBounds(50, 200, 100, 100);
-//        numberOfProducts.setFont(fontEnglishText);
-//        numberOfProducts.setText(Integer.toString(Stock));
-//        productDetailsPanel.add(numberOfProducts);
-//
-//        addToCart.setBounds(50, 300, 100, 100);
-//        addToCart.setFont(fontEnglishText);
-//        productDetailsPanel.add(addToCart);
-//
-//
-//
-//        imageLabel.setBounds(810,150,350,250);
-//        productDetailsPanel.add(imageLabel);
-//
-//        //buttons
-//        addToCartButton.setBounds(150, 330, 150, 35);
-//        addToCartButton.setFont(fontEnglishButton);
-//        productDetailsPanel.add(addToCartButton);
-//
-//
-//
-//
-//
-//        addToCartButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//                try {
-//                    FileWriter writer = new FileWriter("cart.txt",true);
-//                    BufferedWriter writer1 = new BufferedWriter(writer);
-//                    writer1.write(Id + ",");
-//                    writer1.close();
-//                }
-//                catch (IOException ee)
-//                {
-//                    System.out.println("error");
-//                }
-//            }
-//        });
-//        homeButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                frame.remove(productDetailsPanel);
-//                home();
-//                frame.repaint();
-//                frame.revalidate();
-//
-//
-//            }
-//        });
-//
-//        cartButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                frame.remove(productDetailsPanel);
-//                cart();
-//                frame.repaint();
-//                frame.revalidate();
-//
-//            }
-//        });
-//
-//        profileButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                frame.remove(productDetailsPanel);
-//                profile();
-//                frame.repaint();
-//                frame.revalidate();
-//
-//            }
-//        });
-//
-//
-//
-//        frame.add(productDetailsPanel);
-//
-//    }
-
 
 
     private static void changePassword(){
@@ -813,8 +543,7 @@ public class showProduct extends JFrame {
         cartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.remove(changePasswordPanel);
-                cart();
+                showMoreProduct();
                 frame.repaint();
                 frame.revalidate();
 
@@ -910,8 +639,7 @@ public class showProduct extends JFrame {
         cartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.remove(depositPanel);
-                cart();
+                showMoreProduct();
                 frame.repaint();
                 frame.revalidate();
 
