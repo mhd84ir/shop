@@ -246,7 +246,7 @@ public class showAdmin  implements ActionListener {
 
         //picture
 
-        this.imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\p3.jpg"));
+        this.imageLabel = new JLabel(new ImageIcon("C:\\Users\\asus\\Desktop\\java\\AP\\shop\\src\\photos\\putPhoto.jpg"));
         this.imageLabel.setBounds(700,100,400,400);
         addPanel.add(this.imageLabel);
 
