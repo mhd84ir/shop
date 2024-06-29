@@ -145,6 +145,11 @@ public class showProduct extends JFrame{
 
 
 
+    //previous purchase panel
+    static JPanel previousPurchasePanel = new JPanel();
+
+
+
     public showProduct() {
 
 
@@ -690,6 +695,16 @@ public class showProduct extends JFrame{
             }
         });
 
+        PreviousPurchasesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.remove(profilePanel);
+                previousPurchase();
+                frame.repaint();
+                frame.revalidate();
+            }
+        });
+
 
 
         frame.add(profilePanel);
@@ -859,7 +874,6 @@ public class showProduct extends JFrame{
         });
 
 
-
         frame.add(changePasswordPanel);
 
     }
@@ -923,6 +937,61 @@ public class showProduct extends JFrame{
         frame.add(depositPanel);
 
     }
+
+
+    private static void previousPurchase(){
+        //new frame
+        JFrame previousPurchaseFrame = new JFrame();
+
+        previousPurchasePanel.setSize(1200,700);
+        previousPurchasePanel.setBackground(Color.LIGHT_GRAY);
+        previousPurchasePanel.setLayout(null);
+
+        // Create a JPanel to hold the grid
+        JPanel panel = new JPanel(new GridLayout(50 , 4));
+
+        // Adding headers to the first row
+        String[] headers = {"ID","Name","Price"};
+        for (String header : headers) {
+            panel.add(new JLabel(header));
+        }
+
+//         Add 100 rows of 8 JTextFields and 1 JButton
+        for (int row = 0; row < 50; row++) {
+            for (int col = 0; col < 2; col++) {
+                panel.add(new JTextField());
+
+            }
+        }
+
+//        // Add all users of 8 JTextFields and 1 JButton
+//        for (User user : users) {
+//            panel.add(new JTextField(String.valueOf(user.getID())));
+//            panel.add(new JTextField(user.getUserName()));
+//            panel.add(new JTextField(user.getName()));
+//            panel.add(new JTextField(user.getPhoneNumber()));
+//            panel.add(new JTextField(user.getEmail()));
+//            panel.add(new JTextField(user.getAddress()));
+//            panel.add(new JTextField(String.valueOf(user.getCredit())));
+//            panel.add(new JTextField(user.getRole()));
+//            JButton button = new JButton("Edit");
+//            panel.add(button);
+//        }
+
+        previousPurchaseFrame.add(panel);
+
+        // Add the panel to the JFrame
+        previousPurchaseFrame.add(new JScrollPane(panel));
+
+        // Set the size of the JFrame
+        previousPurchaseFrame.setSize(1000, 500);
+        // Set the visibility of the JFrame
+        previousPurchaseFrame.setVisible(true);
+
+
+    }
+
+
 
 
     public static void main(String[] args) {
