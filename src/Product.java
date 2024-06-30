@@ -15,12 +15,12 @@ public class Product extends Database {
     private double price;
     private int stock;
 
-    private File picture ;
+    private File picture;
 
     private ImageIcon imageIcon;
 
 
-    private ArrayList <Product> products = new ArrayList<Product>();
+    private ArrayList<Product> products = new ArrayList<Product>();
 
 
     public void setID(int ID) {
@@ -98,8 +98,7 @@ public class Product extends Database {
 
     }
 
-    public boolean getInfoDB(int ID)
-    {
+    public boolean getInfoDB(int ID) {
         try (Connection connection = getConnection()) {
             String query = "SELECT * FROM Product WHERE ID = ?";
 
@@ -118,9 +117,9 @@ public class Product extends Database {
                             try {
 
                                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                                    baos.write(imageBytes);
-                                    baos.flush();
-                                InputStream imageStream =  new ByteArrayInputStream(baos.toByteArray());
+                                baos.write(imageBytes);
+                                baos.flush();
+                                InputStream imageStream = new ByteArrayInputStream(baos.toByteArray());
                                 imageIcon = new ImageIcon(imageBytes);
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -128,8 +127,6 @@ public class Product extends Database {
                         } else {
                             System.out.println("Image not found in database.");
                         }
-
-
 
 
                         return true;
@@ -167,7 +164,7 @@ public class Product extends Database {
                                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                                 baos.write(imageBytes);
                                 baos.flush();
-                                InputStream imageStream =  new ByteArrayInputStream(baos.toByteArray());
+                                InputStream imageStream = new ByteArrayInputStream(baos.toByteArray());
                                 product.setImageIcon(new ImageIcon(imageBytes));
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -187,12 +184,7 @@ public class Product extends Database {
     }
 
 
-
-
-
-
-    public boolean search(String name)
-    {
+    public boolean search(String name) {
         try (Connection connection = getConnection()) {
             String query = "SELECT * FROM Product WHERE productName = ?";
 
@@ -213,7 +205,7 @@ public class Product extends Database {
                                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                                 baos.write(imageBytes);
                                 baos.flush();
-                                InputStream imageStream =  new ByteArrayInputStream(baos.toByteArray());
+                                InputStream imageStream = new ByteArrayInputStream(baos.toByteArray());
                                 imageIcon = new ImageIcon(imageBytes);
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -221,8 +213,6 @@ public class Product extends Database {
                         } else {
                             System.out.println("Image not found in database.");
                         }
-
-
 
 
                         return true;
@@ -238,5 +228,34 @@ public class Product extends Database {
         return false;
     }
 
+    // get a array of Id and return a arraylist of products
+    public ArrayList<Product> getProductsByIds(ArrayList<Integer> ids) {
+        ArrayList<Product> products = new ArrayList<>();
+        for (int id : ids) {
+            Product product = new Product();
+            if (product.getInfoDB(id)) {
+                products.add(product);
+            }
+        }
+        return products;
+    }
 
+    // update data base by getter method
+    public boolean updateProduct(int ID) {
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Product SET productName = ?, price = ?, stock = ? WHERE ID = ?");
+            preparedStatement.setString(1, getProductName());
+            preparedStatement.setDouble(2, getPrice());
+            preparedStatement.setInt(3, getStock());
+            preparedStatement.setInt(4, ID);
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+
+
+        }
+    }
 }

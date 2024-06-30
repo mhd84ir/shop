@@ -65,7 +65,7 @@ public class showAdmin  implements ActionListener {
 
     //property panel
     static JPanel propertyPanel = new JPanel();
-    static JLabel sellingAmount = new JLabel("Overall property is : 454534$");
+    static JLabel sellingAmount = new JLabel("Overall property is : " + new Balance().getInfoDB());
 
 
 

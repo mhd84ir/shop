@@ -1,4 +1,7 @@
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
+import java.util.Base64;
 
 
 public class SignUp extends Database {
@@ -102,7 +105,7 @@ public class SignUp extends Database {
 
 
             try (PreparedStatement statement = connection.prepareStatement(query)) {
-                statement.setString(1, password);
+                statement.setString(1, HashPassword(password));
                 statement.setString(2, userName);
                 statement.setString(3, "normal");
 
@@ -119,6 +122,20 @@ public class SignUp extends Database {
         return false;
     }
 
+    public static String HashPassword (String password)
+    {
+        String hashedPassword;
+        MessageDigest messageDigest;
+        try {
+            messageDigest = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        hashedPassword = Base64.getEncoder().encodeToString(messageDigest.digest(password.getBytes()));
+        return hashedPassword;
+    }
 
 
 
