@@ -381,7 +381,7 @@ public class showAdmin  implements ActionListener {
         propertyPanel.setLayout(null);
 
         //labels
-        sellingAmount.setBounds(500, 80, 500, 100);
+        sellingAmount.setBounds(500, 10, 500, 100);
         sellingAmount.setFont(fontEnglishText);
         propertyPanel.add(sellingAmount);
 
