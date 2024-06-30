@@ -92,7 +92,7 @@ public class LoginForm extends JFrame implements ActionListener {
             String password = new String(passwordField.getPassword());
 
             // Placeholder for actual authentication logic
-            if (new Signin().checkUsernameAndPassword(username,password)) {
+            if (new Signin().checkUsernameAndPassword(username,new SignUp().HashPassword(password))) {
                 JOptionPane.showMessageDialog(this, "Login successful!");
                 String[] info = new String[2];
 
